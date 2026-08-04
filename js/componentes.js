@@ -57,7 +57,7 @@ function cargarFooter() {
             <ul class="footer-links">
               <li><a href="index.html">Inicio</a></li>
               <li><a href="nosotros.html">Sobre Nosotros</a></li>
-              <li><a href="forjaversarios.html">Forjaversarios</a></li>
+              <li><a href="que-es-forjaversario.html">Forjaversarios</a></li>
               <li><a href="eventos.html">Eventos</a></li>
               <li><a href="#">VRCA</a></li>
             </ul>
