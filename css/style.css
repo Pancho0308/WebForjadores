@@ -989,3 +989,265 @@ body {
   border-color: #e0c080;
   color: #9a6a10;
 }
+
+/* ── QUÉ ES FORJAVERSARIO ── */
+
+.qef-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--azul-claro);
+  border: 0.5px solid rgba(142, 207, 238, 0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  background: rgba(142, 207, 238, 0.06);
+  margin-bottom: 14px;
+}
+
+.qef-fundadores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.qef-ftag {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.qef-ftag strong { color: rgba(255, 255, 255, 0.85); }
+
+/* STATS */
+#qef-stats {
+  background-color: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+}
+
+.qef-stat {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--borde);
+}
+
+.qef-stat:last-child { border-right: none; }
+
+.qef-stat-n {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--azul-principal);
+}
+
+.qef-stat-l {
+  font-size: 11px;
+  color: var(--texto-suave);
+  margin-top: 3px;
+}
+
+/* VIDEO */
+#qef-video {
+  background-color: var(--blanco);
+  padding: 64px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.qef-video-desc {
+  font-size: 14px;
+  color: var(--texto-suave);
+  margin-bottom: 24px;
+  max-width: 500px;
+  line-height: 1.65;
+}
+
+.qef-video-wrapper {
+  background: #0d1f35;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(142, 207, 238, 0.15);
+  max-width: 800px;         /* Limita el ancho para que no sea demasiado grande */
+}
+
+.qef-video-topbar {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 0.5px solid rgba(142, 207, 238, 0.1);
+}
+
+.qef-vdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--azul-claro);
+}
+
+.qef-vlabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--azul-claro);
+}
+
+/* Truco para que el iframe sea responsive manteniendo proporción 16:9 */
+.qef-iframe-wrap {
+  position: relative;
+  padding-bottom: 56.25%;   /* 16:9 — 9 ÷ 16 = 0.5625 */
+  height: 0;
+  overflow: hidden;
+}
+
+.qef-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.qef-video-caption {
+  font-size: 11px;
+  color: rgba(200, 225, 245, 0.35);
+  padding: 10px 18px 14px;
+  font-style: italic;
+}
+
+/* LÍNEA DE TIEMPO */
+#qef-timeline {
+  background-color: var(--fondo);
+  padding: 64px 0;
+}
+
+.tl-contenedor {
+  position: relative;
+  padding-left: 58px;       /* Espacio para el círculo del año */
+}
+
+/* Línea vertical */
+.tl-contenedor::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--azul-principal), var(--borde) 95%);
+}
+
+.tl-fila {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.tl-lado-izq {
+  position: absolute;
+  left: -58px;
+  top: 0;
+}
+
+/* Círculo con el año */
+.tl-anio {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--azul-principal);
+  background: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--azul-principal);
+  z-index: 1;
+  position: relative;
+}
+
+.tl-anio.filled {
+  background: var(--azul-principal);
+  color: #ffffff;
+}
+
+/* Card de cada edición */
+.tl-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: box-shadow 0.2s ease;
+}
+
+.tl-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.tl-card-foto {
+  height: 200px;
+  background: #c8dce8;
+  overflow: hidden;
+}
+
+.tl-card-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.tl-card:hover .tl-card-foto img {
+  transform: scale(1.03);
+}
+
+.tl-card-cuerpo { padding: 20px 22px; }
+
+.tl-edicion {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--azul-principal);
+  margin-bottom: 6px;
+}
+
+.tl-titulo {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 10px;
+}
+
+.tl-desc {
+  font-size: 13px;
+  color: var(--texto-suave);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tl-tag {
+  font-size: 10px;
+  background: #f2f6fa;
+  border: 0.5px solid #dce8f0;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: var(--azul-principal);
+}
+
+.tl-tag.gold {
+  background: #faf0d8;
+  border-color: #e0c080;
+  color: #9a6a10;
+}
