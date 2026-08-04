@@ -18,7 +18,7 @@ function cargarNavbar() {
             <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link" href="eventos.html">Eventos</a></li>
-            <li class="nav-item"><a class="nav-link" href="forjaversarios.html">Forjaversarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Redes</a></li>
             <li class="nav-item"><a class="btn btn-donar" href="#">Donar ♡</a></li>
           </ul>
