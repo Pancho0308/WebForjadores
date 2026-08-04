@@ -1069,6 +1069,7 @@ body {
   overflow: hidden;
   border: 1px solid rgba(142, 207, 238, 0.15);
   max-width: 800px;         /* Limita el ancho para que no sea demasiado grande */
+  margin: 0 auto;
 }
 
 .qef-video-topbar {
@@ -1150,6 +1151,13 @@ body {
   position: absolute;
   left: -58px;
   top: 0;
+  flex-shrink: 0;
+}
+
+.tl-lado-der {
+  flex: 1;
+  min-width: 0;        /* ← evita que el contenido desborde */
+  width: 100%;         /* ← ocupa todo el ancho disponible */
 }
 
 /* Círculo con el año */
@@ -1182,7 +1190,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100%;          /* ← asegura que ocupe todo el ancho del contenedor */
   transition: box-shadow 0.2s ease;
 }
 
