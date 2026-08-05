@@ -66,7 +66,7 @@ function cargarFooter() {
             <p class="footer-titulo-col">Comunidad</p>
             <ul class="footer-links">
               <li><a href="redes.html">Nuestras Redes</a></li>
-              <li><a href="#">Colaboraciones</a></li>
+              <li><a href="colaboraciones.html">Colaboraciones</a></li>
               <li><a href="que-es-forjaversario.html">Forjaversarios</a></li>
               <li><a href="#">Donativos</a></li>
             </ul>
