@@ -1259,3 +1259,353 @@ body {
   border-color: #e0c080;
   color: #9a6a10;
 }
+
+/* ── REDES SOCIALES ── */
+#redes-principales {
+  background: var(--blanco);
+  padding: 64px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+/* Cards grandes destacadas */
+.red-destacada {
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* DISCORD */
+.discord-card {
+  display: flex;
+  background: var(--blanco);
+  align-items: stretch;    /* ← hace que ambas columnas tengan la misma altura */
+}
+
+.discord-izq {
+  background: linear-gradient(135deg, #5865F2, #404EED);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 160px;
+  flex-shrink: 0;
+  align-self: stretch;     /* ← se estira hasta la altura del iframe */
+}
+
+.discord-logo { font-size: 30px; margin-bottom: 4px; }
+.discord-nombre { font-size: 16px; font-weight: 700; color: #fff; }
+.discord-sub { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+.discord-online {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 6px;
+}
+
+.online-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #3ba55c;
+  flex-shrink: 0;
+}
+
+.discord-der {
+  flex: 1;
+  padding: 0;       /* ← sin padding para que el iframe ocupe todo */
+  overflow: hidden;
+  min-width: 0;
+}
+
+.discord-der iframe {
+  display: block;
+  border-radius: 0 12px 12px 0;
+  height: 100% !important;   /* ← ocupa toda la altura de la card */
+  min-height: 280px;          /* ← altura mínima por si acaso */
+}
+
+.discord-canales-titulo {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 10px;
+}
+
+.discord-canales {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.discord-canal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f2f4f8;
+}
+
+.dc-hash { color: #aaa; font-size: 14px; }
+
+.discord-btn {
+  display: inline-block;
+  font-size: 12px;
+  padding: 7px 18px;
+  background: #5865F2;
+  color: #fff;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.discord-btn:hover {
+  background: #4752C4;
+  color: #fff;
+}
+
+/* YOUTUBE */
+.youtube-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--blanco);
+}
+
+.youtube-top {
+  background: #FF0000;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.youtube-logo { font-size: 24px; color: #fff; }
+.youtube-nombre { font-size: 15px; font-weight: 700; color: #fff; }
+.youtube-sub { font-size: 10px; color: rgba(255,255,255,0.7); }
+
+.youtube-preview {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  min-height: 160px;
+  background: #000;
+  cursor: pointer;
+}
+
+.youtube-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+
+.youtube-preview:hover img { opacity: 0.65; }
+
+.youtube-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.youtube-play-btn {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.youtube-preview:hover .youtube-play-btn {
+  transform: scale(1.1);
+}
+
+.youtube-footer {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--borde);
+}
+
+.youtube-caption { font-size: 11px; color: var(--texto-suave); }
+
+.youtube-btn {
+  font-size: 11px;
+  padding: 5px 14px;
+  background: #FF0000;
+  color: #fff;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.youtube-btn:hover {
+  background: #cc0000;
+  color: #fff;
+}
+
+/* Cards pequeñas */
+.red-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.red-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.red-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.red-icono {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.instagram-icono {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.red-nombre { font-size: 13px; font-weight: 600; color: var(--texto); }
+.red-handle { font-size: 10px; color: var(--texto-suave); }
+
+.red-card-preview {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--borde);
+  font-size: 11px;
+  color: #aaa;
+}
+
+.red-card-footer {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.red-btn {
+  font-size: 11px;
+  padding: 5px 14px;
+  border: 1px solid var(--azul-principal);
+  color: var(--azul-principal);
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.red-btn:hover {
+  background: var(--azul-principal);
+  color: #fff;
+}
+
+/* EMBEDS */
+#redes-embed {
+  background: var(--fondo);
+  padding: 64px 0;
+}
+
+.embed-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.embed-tab {
+  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--borde);
+  background: var(--blanco);
+  color: var(--texto-suave);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.embed-tab.active {
+  background: var(--azul-principal);
+  color: #fff;
+  border-color: var(--azul-principal);
+}
+
+.embed-panel {
+  display: none;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.embed-panel.activo { display: block; }
+
+.embed-topbar {
+  background: #1a2e40;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.embed-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--azul-claro);
+}
+
+.embed-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--azul-claro);
+}
+
+.embed-contenido {
+  padding: 20px;
+  min-height: 200px;
+}
+
+.embed-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 13px;
+}

@@ -152,3 +152,24 @@ if (starCanvas) {
   initStars();
   requestAnimationFrame(drawStars);
 }
+
+// ── TABS DE REDES SOCIALES ──
+const embedTabs = document.querySelectorAll('.embed-tab');
+
+if (embedTabs.length > 0) {
+  embedTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+
+      // Quita activo de todas las pestañas y paneles
+      embedTabs.forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.embed-panel').forEach(p => p.classList.remove('activo'));
+
+      // Activa la pestaña clickeada
+      tab.classList.add('active');
+
+      // Activa el panel correspondiente
+      const red = tab.getAttribute('data-red');
+      document.getElementById('panel-' + red).classList.add('activo');
+    });
+  });
+}
