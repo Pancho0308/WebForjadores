@@ -19,7 +19,7 @@ function cargarNavbar() {
             <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link" href="eventos.html">Eventos</a></li>
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Redes</a></li>
+            <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
             <li class="nav-item"><a class="btn btn-donar" href="#">Donar ♡</a></li>
           </ul>
         </div>
@@ -65,9 +65,9 @@ function cargarFooter() {
           <div class="col-6 col-lg-2">
             <p class="footer-titulo-col">Comunidad</p>
             <ul class="footer-links">
-              <li><a href="#">Nuestras Redes</a></li>
+              <li><a href="redes.html">Nuestras Redes</a></li>
               <li><a href="#">Colaboraciones</a></li>
-              <li><a href="#">Forjaversarios</a></li>
+              <li><a href="que-es-forjaversario.html">Forjaversarios</a></li>
               <li><a href="#">Donativos</a></li>
             </ul>
           </div>

@@ -1609,3 +1609,188 @@ body {
   color: var(--texto-suave);
   font-size: 13px;
 }
+
+/* ── COLABORACIONES ── */
+
+.colab-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(142, 207, 238, 0.08);
+  border: 0.5px solid rgba(142, 207, 238, 0.2);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #8ecfee;
+  margin-top: 16px;
+}
+
+.colab-count strong { color: #ffffff; }
+
+/* DESTACADOS */
+#colab-destacados {
+  background: var(--blanco);
+  padding: 64px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.dest-card {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dest-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.dest-logo {
+  height: 120px;
+  background: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.dest-logo img {
+  max-width: 100%;
+  max-height: 88px;
+  object-fit: contain;
+  display: block;
+}
+
+.dest-body { padding: 18px; }
+
+.dest-tag {
+  font-size: 10px;
+  background: #f2f6fa;
+  border: 0.5px solid #dce8f0;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: var(--azul-principal);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.dest-tag.grande {
+  background: #faf0d8;
+  border-color: #e0c080;
+  color: #9a6a10;
+}
+
+.dest-nombre {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+
+.dest-desc {
+  font-size: 12px;
+  color: var(--texto-suave);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.dest-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dest-link {
+  font-size: 11px;
+  padding: 4px 12px;
+  border: 1px solid var(--azul-principal);
+  color: var(--azul-principal);
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.dest-link:hover {
+  background: var(--azul-principal);
+  color: #ffffff;
+}
+
+/* TODOS LOS SOCIOS */
+#colab-socios {
+  background: var(--fondo);
+  padding: 64px 0;
+}
+
+.socio-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.socio-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.socio-logo {
+  height: 90px;
+  background: var(--fondo);
+  border-bottom: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.socio-logo img {
+  max-width: 100%;
+  max-height: 62px;
+  object-fit: contain;
+  display: block;
+}
+
+.socio-body { padding: 14px; }
+
+.socio-nombre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 6px;
+}
+
+.socio-desc {
+  font-size: 11px;
+  color: var(--texto-suave);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.socio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.socio-link {
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid var(--azul-principal);
+  color: var(--azul-principal);
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.socio-link:hover {
+  background: var(--azul-principal);
+  color: #ffffff;
+}
