@@ -74,10 +74,10 @@ function cargarFooter() {
           <div class="col-12 col-lg-3">
             <p class="footer-titulo-col">Síguenos</p>
             <div class="d-flex flex-column gap-2">
-              <a href="#" class="footer-red"><span class="footer-red-icono">Tw</span>Twitter / X</a>
-              <a href="#" class="footer-red"><span class="footer-red-icono">Dc</span>Discord</a>
-              <a href="#" class="footer-red"><span class="footer-red-icono">Ig</span>Instagram</a>
-              <a href="#" class="footer-red"><span class="footer-red-icono">Yt</span>YouTube</a>
+              <a href="https://x.com/fvrchat?lang=en" class="footer-red"><span class="footer-red-icono">Tw</span>Twitter / X</a>
+              <a href="https://discord.gg/tgp6uTTGAf" class="footer-red"><span class="footer-red-icono">Dc</span>Discord</a>
+              <a href="https://www.instagram.com/forjadores.hispanos.de.vrchat/%20" class="footer-red"><span class="footer-red-icono">Ig</span>Instagram</a>
+              <a href="https://www.youtube.com/@forjadoreshispanosvrchat" class="footer-red"><span class="footer-red-icono">Yt</span>YouTube</a>
             </div>
           </div>
         </div>
