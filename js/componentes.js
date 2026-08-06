@@ -20,6 +20,7 @@ function cargarNavbar() {
             <li class="nav-item"><a class="nav-link" href="eventos.html">Eventos</a></li>
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
+            <li class="nav-item"><a class="nav-link" href="colaboraciones.html">Colaboraciones</a></li>
             <li class="nav-item"><a class="btn btn-donar" href="#">Donar ♡</a></li>
           </ul>
         </div>
@@ -76,8 +77,8 @@ function cargarFooter() {
             <div class="d-flex flex-column gap-2">
               <a href="https://x.com/fvrchat?lang=en" class="footer-red"><span class="footer-red-icono">Tw</span>Twitter / X</a>
               <a href="https://discord.gg/tgp6uTTGAf" class="footer-red"><span class="footer-red-icono">Dc</span>Discord</a>
-              <a href="https://www.instagram.com/forjadores.hispanos.de.vrchat/" class="footer-red"><span class="footer-red-icono">Ig</span>Instagram</a>
-              <a href="https://www.youtube.com/channel/UC0aVZFISoNdSzlDekqUs4ww" class="footer-red"><span class="footer-red-icono">Yt</span>YouTube</a>
+              <a href="https://www.instagram.com/forjadores.hispanos.de.vrchat/%20" class="footer-red"><span class="footer-red-icono">Ig</span>Instagram</a>
+              <a href="https://www.youtube.com/@forjadoreshispanosvrchat" class="footer-red"><span class="footer-red-icono">Yt</span>YouTube</a>
             </div>
           </div>
         </div>
