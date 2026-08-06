@@ -57,10 +57,19 @@ if (starCanvas) {
   const mouse = { x: -999, y: -999 };
   const N = 350, ATTRACT = 160;
 
-  function resizeCanvas() {
-    W = starCanvas.width  = starCanvas.offsetWidth;
+function resizeCanvas() {
+  const hero = document.getElementById('fv-hero');
+  const lore = document.getElementById('fv-lore');
+
+  W = starCanvas.width = starCanvas.offsetWidth;
+
+  // La altura del canvas = hero + lore juntos
+  if (hero && lore) {
+    H = starCanvas.height = hero.offsetHeight + lore.offsetHeight;
+  } else {
     H = starCanvas.height = starCanvas.offsetHeight;
   }
+}
 
   function makeStar() {
     return {
@@ -78,16 +87,16 @@ if (starCanvas) {
     stars = Array.from({ length: N }, makeStar);
   }
 
-  starCanvas.parentElement.addEventListener('mousemove', function(e) {
-    const rect = starCanvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
+  document.addEventListener('mousemove', function(e) {
+  const rect = starCanvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+});
 
-  starCanvas.parentElement.addEventListener('mouseleave', function() {
-    mouse.x = -999;
-    mouse.y = -999;
-  });
+document.addEventListener('mouseleave', function() {
+  mouse.x = -999;
+  mouse.y = -999;
+});
 
   function drawStars() {
     ctx.clearRect(0, 0, W, H);

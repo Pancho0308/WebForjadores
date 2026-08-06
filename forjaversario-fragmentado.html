@@ -10,30 +10,7 @@
 <body class="pagina-forjaversarios">
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg" id="navbar-principal">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <img src="img/logo.png" alt="Logo Forjadores" width="40" height="40" class="logo-img">
-        <div>
-          <div class="nav-nombre">Forjadores Hispanos</div>
-          <div class="nav-sub">Comunidad VRChat hispanohablante</div>
-        </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="menu-principal">
-        <ul class="navbar-nav ms-auto align-items-center gap-2">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
-          <li class="nav-item"><a class="nav-link" href="eventos.html">Eventos</a></li>
-          <li class="nav-item"><a class="nav-link active" href="forjaversarios.html">Forjaversarios</a></li>
-          <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
-          <li class="nav-item"><a class="btn btn-donar" href="#">Donar ♡</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div id="navbar-container"></div>
 
   <!-- HERO GALAXIA -->
   <section id="fv-hero">
@@ -76,6 +53,142 @@
       </div>
     </div>
   </section>
+
+<!-- LORE SECTION -->
+<section id="fv-lore">
+  <div class="container">
+
+    <!-- Encabezado -->
+    <div class="lore-header">
+      <p class="lore-eyebrow">ARCHIVO CLASIFICADO · NIVEL 5 · ACCESO RESTRINGIDO</p>
+      <h2 class="lore-titulo">La Historia de <span class="fv-celeste">Fragmentado</span></h2>
+      <p class="lore-subtitulo">— lo que sabemos hasta ahora —</p>
+    </div>
+
+    <!-- Bloque de historia principal -->
+    <div class="lore-archivo">
+      <span class="lore-archivo-tag">TRANSMISIÓN #001 · ORIGEN</span>
+      <p class="lore-archivo-texto">
+        Todo comenzó cuando la señal de <span class="lore-highlight">Forjaversario</span> empezó a fragmentarse.<br><br>
+        Nadie sabe exactamente cuándo ocurrió. Un día, los registros de la comunidad comenzaron a mostrar
+        anomalías — fechas duplicadas, mensajes que llegaban desde <mark class="censurado">dimensiones paralelas</mark>,
+        versiones alternativas de eventos que nunca sucedieron.<br><br>
+        Los investigadores de <span class="lore-highlight">Forjadores Hispanos</span> detectaron la primera fractura el
+        <mark class="censurado">██ de ██████ de 2026</mark>. Para entonces, ya era demasiado tarde.<br><br>
+        Alguien — o algo — había comenzado a <span class="lore-highlight">reescribir la historia</span>.
+      </p>
+    </div>
+
+    <!-- Galería de imágenes del lore -->
+    <div class="row g-2 lore-galeria">
+
+      <!-- Imagen grande — arte principal / poster -->
+      <div class="col-12 col-md-8">
+        <div class="lore-img">
+          <div class="lore-img-inner" style="height: 280px;">
+            <img src="img/lore-principal.jpg" alt="Arte principal Forjaversario Fragmentado">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_001 · Arte principal del evento</div>
+        </div>
+      </div>
+
+      <!-- Columna de imágenes pequeñas -->
+      <div class="col-12 col-md-4 d-flex flex-column gap-2">
+        <div class="lore-img" style="flex:1;">
+          <div class="lore-img-inner" style="height:133px;">
+            <img src="img/lore-escena1.jpg" alt="Escena del lore 1">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_002</div>
+        </div>
+        <div class="lore-img" style="flex:1;">
+          <div class="lore-img-inner" style="height:133px;">
+            <img src="img/lore-escena2.jpg" alt="Escena del lore 2">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_003</div>
+        </div>
+      </div>
+
+      <!-- Fila de imágenes pequeñas abajo -->
+      <div class="col-12 col-md-4">
+        <div class="lore-img">
+          <div class="lore-img-inner" style="height:120px;">
+            <img src="img/lore-escena3.jpg" alt="Escena del lore 3">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_004</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="lore-img">
+          <div class="lore-img-inner" style="height:120px;">
+            <img src="img/lore-escena4.jpg" alt="Escena del lore 4">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_005</div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="lore-img">
+          <div class="lore-img-inner" style="height:120px;">
+            <img src="img/lore-escena5.jpg" alt="Escena del lore 5">
+          </div>
+          <div class="lore-img-pie">ARCHIVO_IMG_006</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Capítulos de historia -->
+    <div class="lore-capitulos">
+
+      <div class="lore-cap">
+        <div class="lore-cap-num">01</div>
+        <div class="lore-cap-content">
+          <h3 class="lore-cap-titulo">La Primera Fractura</h3>
+          <p class="lore-cap-texto">
+            Los sistemas de comunicación de Forjadores comenzaron a recibir señales de una fuente desconocida.
+            Los mensajes llegaban fragmentados, como si vinieran de <mark class="censurado">otro tiempo</mark>.
+            <!-- Reemplaza este texto con tu lore real -->
+          </p>
+        </div>
+      </div>
+
+      <div class="lore-cap">
+        <div class="lore-cap-num">02</div>
+        <div class="lore-cap-content">
+          <h3 class="lore-cap-titulo">Los Fragmentos Perdidos</h3>
+          <p class="lore-cap-texto">
+            Se identificaron <mark class="censurado">████</mark> fragmentos dispersos a través de dimensiones paralelas.
+            Cada uno contiene una pieza de la verdad sobre lo que realmente ocurrió durante el
+            <mark class="censurado">Forjaversario ████████</mark>.
+            <!-- Reemplaza este texto con tu lore real -->
+          </p>
+        </div>
+      </div>
+
+      <div class="lore-cap">
+        <div class="lore-cap-num">03</div>
+        <div class="lore-cap-content">
+          <h3 class="lore-cap-titulo">La Misión</h3>
+          <p class="lore-cap-texto">
+            La comunidad debe reunirse para recuperar los fragmentos antes de que
+            <mark class="censurado">████████████████</mark> complete su plan.
+            El tiempo se acaba.
+            <!-- Reemplaza este texto con tu lore real -->
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="lore-cta">
+      <p class="lore-cta-texto">¿Estás listo para unirte a la misión?</p>
+      <a href="#" class="btn btn-fv-principal">Ver Forjaversario 2026 →</a>
+    </div>
+
+  </div>
+</section>
 
   <!-- EDICIONES ANTERIORES -->
   <section id="fv-ediciones">
@@ -161,56 +274,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer id="footer">
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-12 col-lg-4">
-          <div class="footer-marca">
-            <img src="img/logo.png" alt="Logo Forjadores" width="40" height="40" class="logo-img mb-3">
-            <h4 class="footer-nombre">Forjadores Hispanos VR</h4>
-            <p class="footer-desc">Comunidad hispanohablante en VRChat dedicada al aprendizaje, el arte digital y la colaboración.</p>
-          </div>
-        </div>
-        <div class="col-6 col-lg-2 offset-lg-1">
-          <p class="footer-titulo-col">Navegación</p>
-          <ul class="footer-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="nosotros.html">Sobre Nosotros</a></li>
-            <li><a href="forjaversarios.html">Forjaversarios</a></li>
-            <li><a href="#">Equipo</a></li>
-            <li><a href="#">VRCA</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-lg-2">
-          <p class="footer-titulo-col">Comunidad</p>
-          <ul class="footer-links">
-            <li><a href="#">Nuestras Redes</a></li>
-            <li><a href="#">Colaboraciones</a></li>
-            <li><a href="#">Forjaversarios</a></li>
-            <li><a href="#">Donativos</a></li>
-          </ul>
-        </div>
-        <div class="col-12 col-lg-3">
-          <p class="footer-titulo-col">Síguenos</p>
-          <div class="d-flex flex-column gap-2">
-            <a href="#" class="footer-red"><span class="footer-red-icono">Tw</span>Twitter / X</a>
-            <a href="#" class="footer-red"><span class="footer-red-icono">Dc</span>Discord</a>
-            <a href="#" class="footer-red"><span class="footer-red-icono">Ig</span>Instagram</a>
-            <a href="#" class="footer-red"><span class="footer-red-icono">Yt</span>YouTube</a>
-          </div>
-        </div>
-      </div>
-      <hr class="footer-hr">
-      <div class="row align-items-center footer-bottom">
-        <div class="col-12 col-md-6">
-          <p class="footer-copy">© 2026 Forjadores Hispanos VR · Creado por Noch</p>
-        </div>
-        <div class="col-12 col-md-6 text-md-end">
-          <p class="footer-copy">Actualizado por HorchataDuck · UranicTheWolf · Zyiranth</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+<div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/componentes.js"></script>
