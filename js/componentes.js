@@ -21,7 +21,7 @@ function cargarNavbar() {
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
             <li class="nav-item"><a class="nav-link" href="colaboraciones.html">Colaboraciones</a></li>
-            <li class="nav-item"><a class="btn btn-donar" href="#">Donar ♡</a></li>
+            <li class="nav-item"><a class="btn btn-donar" href="donativo.html">Donar ♡</a></li>
           </ul>
         </div>
       </div>
@@ -88,7 +88,7 @@ function cargarFooter() {
             <p class="footer-copy">© 2026 Forjadores Hispanos VR · Creado por Noch</p>
           </div>
           <div class="col-12 col-md-6 text-md-end">
-            <p class="footer-copy">Actualizado por HorchataDuck · UranicTheWolf · Zyiranth</p>
+            <p class="footer-copy">Actualizado por HorchataDuck · Pancho0308 · Umbra</p>
           </div>
         </div>
       </div>
