@@ -182,3 +182,80 @@ if (embedTabs.length > 0) {
     });
   });
 }
+
+// ── LIGHTBOX ──
+const lightbox = document.getElementById('lightbox');
+
+if (lightbox) {
+  const lightboxImg  = lightbox.querySelector('.lightbox-img');
+  const lightboxPie  = lightbox.querySelector('.lightbox-pie');
+  const btnCerrar    = lightbox.querySelector('.lightbox-cerrar');
+  const btnAnterior  = lightbox.querySelector('.lightbox-anterior');
+  const btnSiguiente = lightbox.querySelector('.lightbox-siguiente');
+
+  let fotos = [];
+  let indiceActual = 0;
+
+  // Recopila todas las fotos de la galería
+  function recopilarFotos() {
+    fotos = [];
+    document.querySelectorAll('.galeria-foto[data-foto]').forEach(function(el) {
+      fotos.push({
+        src: el.getAttribute('data-foto'),
+        pie: el.getAttribute('data-pie') || ''
+      });
+    });
+  }
+
+  // Muestra una foto por índice
+  function mostrarFoto(indice) {
+    if (fotos.length === 0) return;
+    if (indice < 0) indice = fotos.length - 1;
+    if (indice >= fotos.length) indice = 0;
+    indiceActual = indice;
+    lightboxImg.src = fotos[indiceActual].src;
+    lightboxPie.textContent = fotos[indiceActual].pie;
+  }
+
+  // Abre el lightbox al hacer click en una foto
+  document.querySelectorAll('.galeria-foto[data-foto]').forEach(function(el, i) {
+    el.addEventListener('click', function() {
+      recopilarFotos();
+      mostrarFoto(i);
+      lightbox.classList.add('activo');
+      document.body.style.overflow = 'hidden'; // evita scroll de fondo
+    });
+  });
+
+  // Cierra con el botón X
+  btnCerrar.addEventListener('click', function() {
+    lightbox.classList.remove('activo');
+    document.body.style.overflow = '';
+  });
+
+  // Cierra al hacer click en el overlay
+  lightbox.querySelector('.lightbox-overlay').addEventListener('click', function() {
+    lightbox.classList.remove('activo');
+    document.body.style.overflow = '';
+  });
+
+  // Navega entre fotos
+  btnAnterior.addEventListener('click', function() {
+    mostrarFoto(indiceActual - 1);
+  });
+
+  btnSiguiente.addEventListener('click', function() {
+    mostrarFoto(indiceActual + 1);
+  });
+
+  // Navega con las flechas del teclado
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('activo')) return;
+    if (e.key === 'ArrowRight') mostrarFoto(indiceActual + 1);
+    if (e.key === 'ArrowLeft')  mostrarFoto(indiceActual - 1);
+    if (e.key === 'Escape') {
+      lightbox.classList.remove('activo');
+      document.body.style.overflow = '';
+    }
+  });
+}

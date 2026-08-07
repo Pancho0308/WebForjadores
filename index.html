@@ -10,6 +10,18 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-overlay"></div>
+  <div class="lightbox-contenido">
+    <button class="lightbox-cerrar">✕</button>
+    <button class="lightbox-anterior">‹</button>
+    <button class="lightbox-siguiente">›</button>
+    <img src="" alt="" class="lightbox-img">
+    <p class="lightbox-pie"></p>
+  </div>
+</div>
+
 <body>
 
   <!-- NAVBAR -->
@@ -28,6 +40,10 @@
     <div class="hero-slide">
       <img src="img/hero-foto3.jpg" alt="Taller Forjadores">
     </div>
+    <div class="hero-slide">
+      <img src="img/Forjaversario2026.png" alt="Taller Forjadores">
+    </div>
+
 
     <div class="hero-overlay"></div>
     <div class="container hero-contenido">
@@ -54,6 +70,7 @@
       <span class="hero-dot activo"></span>
       <span class="hero-dot"></span>
       <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
     </div>
 
   </div>
@@ -76,7 +93,9 @@
 
 
       <div class="col-12 col-lg-6">
-        <div class="galeria-foto galeria-foto-grande">
+        <div class="galeria-foto galeria-foto-grande"
+            data-foto="img/galeria/foto1.png" 
+            data-pie="Forjaversario 2025">
           <img src="img/galeria/foto1.png" alt="Forjaversario 2025">
           <div class="galeria-overlay"></div>
           <p class="galeria-pie">Forjaversario 2025</p>
@@ -87,7 +106,9 @@
         <div class="row g-3">
 
           <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena">
+            <div class="galeria-foto galeria-foto-pequena"
+                data-foto="img/galeria/foto2.png" 
+                data-pie="Rafi">
               <img src="img/galeria/foto2.png" alt="Rafi">
               <div class="galeria-overlay"></div>
               <p class="galeria-pie">Rafi</p>
@@ -95,7 +116,9 @@
           </div>
 
           <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena">
+            <div class="galeria-foto galeria-foto-pequena"
+                data-foto="img/galeria/foto3.png" 
+                data-pie="BaseBall">
               <img src="img/galeria/foto3.png" alt="BaseBall">
               <div class="galeria-overlay"></div>
               <p class="galeria-pie">BaseBall</p>
@@ -103,7 +126,9 @@
           </div>
 
           <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena">
+            <div class="galeria-foto galeria-foto-pequena"
+                data-foto="img/galeria/foto4.png" 
+                data-pie="Dia de muertos">
               <img src="img/galeria/foto4.png" alt="Dia de muertos">
               <div class="galeria-overlay"></div>
               <p class="galeria-pie">Dia de muertos</p>
@@ -111,7 +136,9 @@
           </div>
 
           <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena">
+            <div class="galeria-foto galeria-foto-pequena"
+                data-foto="img/galeria/foto5.png" 
+                data-pie="PJKT">
               <img src="img/galeria/foto5.png" alt="PJKT">
               <div class="galeria-overlay"></div>
               <p class="galeria-pie">PJKT</p>

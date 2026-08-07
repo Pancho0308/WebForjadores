@@ -1,3 +1,16 @@
+// ── FAVICON ──
+function cargarFavicon() {
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/png';
+  favicon.href = 'img/logo.png';
+  document.head.appendChild(favicon);
+}
+
+cargarFavicon();
+cargarNavbar();
+cargarFooter();
+
 // ── NAVBAR ──
 function cargarNavbar() {
   const navbarHTML = `
