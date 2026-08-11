@@ -30,7 +30,6 @@ function cargarNavbar() {
           <ul class="navbar-nav ms-auto align-items-center gap-2">
             <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
-            <li class="nav-item"><a class="nav-link" href="eventos.html">Eventos</a></li>
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
             <li class="nav-item"><a class="nav-link" href="colaboraciones.html">Colaboraciones</a></li>
