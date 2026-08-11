@@ -13,40 +13,43 @@ const dots   = document.querySelectorAll('.hero-dot');
 let slideActual = 0;
 let intervalo;
 
-function irASlide(indice) {
+if (slides.length > 0 && dots.length > 0) {
 
-  slides[slideActual].classList.remove('activo');
-  dots[slideActual].classList.remove('activo');
+  function irASlide(indice) {
 
-
-  slideActual = indice;
-
-
-  if (slideActual >= slides.length) slideActual = 0;
-  if (slideActual < 0) slideActual = slides.length - 1;
+    slides[slideActual].classList.remove('activo');
+    dots[slideActual].classList.remove('activo');
 
 
-  slides[slideActual].classList.add('activo');
-  dots[slideActual].classList.add('activo');
-}
+    slideActual = indice;
 
-function siguienteSlide() {
-  irASlide(slideActual + 1);
-}
 
-function iniciarIntervalo() {
-  intervalo = setInterval(siguienteSlide, 5000);
-}
+    if (slideActual >= slides.length) slideActual = 0;
+    if (slideActual < 0) slideActual = slides.length - 1;
 
-dots.forEach(function(dot, indice) {
-  dot.addEventListener('click', function() {
-    clearInterval(intervalo);
-    irASlide(indice);
-    iniciarIntervalo();
+
+    slides[slideActual].classList.add('activo');
+    dots[slideActual].classList.add('activo');
+  }
+
+  function siguienteSlide() {
+    irASlide(slideActual + 1);
+  }
+
+  function iniciarIntervalo() {
+    intervalo = setInterval(siguienteSlide, 5000);
+  }
+
+  dots.forEach(function(dot, indice) {
+    dot.addEventListener('click', function() {
+      clearInterval(intervalo);
+      irASlide(indice);
+      iniciarIntervalo();
+    });
   });
-});
 
-iniciarIntervalo();
+  iniciarIntervalo();
+}
 
 // ── ESTRELLAS FORJAVERSARIOS ──
 const starCanvas = document.getElementById('starCanvas');
@@ -259,3 +262,19 @@ if (lightbox) {
     }
   });
 }
+
+// ── FORZAR CARGA DEL WIDGET DE TWITTER ──
+function cargarTwitterWidget() {
+  if (window.twttr && window.twttr.widgets) {
+    window.twttr.widgets.load();
+  }
+}
+
+// Intenta cargar cuando el script de Twitter esté listo
+window.twttr = window.twttr || {};
+window.twttr.ready = window.twttr.ready || function(f) {
+  f(window.twttr);
+};
+
+// Espera 2 segundos y fuerza la carga
+setTimeout(cargarTwitterWidget, 2000);
