@@ -71,8 +71,6 @@ function cargarFooter() {
               <li><a href="index.html">Inicio</a></li>
               <li><a href="nosotros.html">Sobre Nosotros</a></li>
               <li><a href="que-es-forjaversario.html">Forjaversarios</a></li>
-              <li><a href="eventos.html">Eventos</a></li>
-              <li><a href="#">VRCA</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
