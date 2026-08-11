@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nuestras Redes · Forjadores Hispanos VR</title>
@@ -228,15 +229,15 @@
       <div class="embed-panel activo" id="panel-twitter">
         <div class="embed-topbar">
           <div class="embed-dot"></div>
-          <span class="embed-label">FEED EN VIVO · TWITTER / X</span>
+          <span class="embed-label">FEED EN VIVO · X</span>
         </div>
         <div class="embed-contenido">
-          <!-- Widget oficial de Twitter — reemplaza TU_USUARIO_TWITTER -->
           <a class="twitter-timeline"
-             data-height="500"
-             data-theme="light"
-             href="https://syndication.x.com/srv/timeline-profile/screen-name/FVrchat">
-             Posts by FVrchat
+            data-height="500"
+            data-theme="light"
+            data-chrome="noheader nofooter noborders"
+            href="https://x.com/FVrchat">
+            Posts by FVrchat
           </a>
         </div>
       </div>
@@ -289,9 +290,13 @@
 
   <div id="footer-container"></div>
 
+  <!-- Contenedor oculto de Google Translate -->
+  <div id="google-translate-container" style="display:none;"></div>
+
+  <script src="https://platform.x.com/widgets.js" charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/componentes.js"></script>
   <script src="js/main.js"></script>
-  <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+
 </body>
 </html>

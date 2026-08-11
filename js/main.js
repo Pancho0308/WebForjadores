@@ -1,10 +1,11 @@
 window.addEventListener('scroll', function() {
   const navbar = document.getElementById('navbar-principal');
-
-  if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (navbar) { 
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   }
 });
 
@@ -263,18 +264,204 @@ if (lightbox) {
   });
 }
 
-// ── FORZAR CARGA DEL WIDGET DE TWITTER ──
+// ── WIDGET DE X ──
 function cargarTwitterWidget() {
   if (window.twttr && window.twttr.widgets) {
-    window.twttr.widgets.load();
+    window.twttr.widgets.load(
+      document.getElementById('panel-twitter')
+    );
   }
 }
 
-// Intenta cargar cuando el script de Twitter esté listo
-window.twttr = window.twttr || {};
-window.twttr.ready = window.twttr.ready || function(f) {
-  f(window.twttr);
+// Espera que el script de X esté listo
+window.twttr = window.twttr || { _e: [], ready: function(f) { this._e.push(f); }};
+window.twttr.ready(function(twttr) {
+  cargarTwitterWidget();
+});
+
+// También recarga cuando se hace click en la pestaña
+const tabTwitter = document.querySelector('[data-red="twitter"]');
+if (tabTwitter) {
+  tabTwitter.addEventListener('click', function() {
+    setTimeout(cargarTwitterWidget, 100);
+  });
+}
+
+// ── SISTEMA DE IDIOMA ──
+const traducciones = {
+  es: {
+    // NAVBAR
+    'nav-inicio':          'Inicio',
+    'nav-nosotros':        'Nosotros',
+    'nav-eventos':         'Eventos',
+    'nav-forjaversarios':  'Forjaversarios',
+    'nav-redes':           'Redes',
+    'nav-colaboraciones':  'Colaboraciones',
+    'nav-donar':           'Donar ♡',
+
+    // INDEX — HERO
+    'hero-badge':    'COMUNIDAD · VRCHAT · HISPANOHABLANTE',
+    'hero-titulo':   'Forjadores<br><span class="hero-titulo-celeste">Hispanos</span>',
+    'hero-tagline':  'Aprende, conecta y descubre talento hispanohablante dentro de VRChat.',
+    'hero-btn1':     'Conoce la comunidad',
+    'hero-btn2':     'Nuestras redes',
+
+    // INDEX — QUIÉNES SOMOS
+    'qs-label':   'QUIÉNES SOMOS',
+    'qs-titulo':  'Un lugar para aprender, crecer y conocer gente',
+    'qs-texto':   'Somos una comunidad hispanohablante en VRChat donde puedes aprender sobre arte 2D, modelado 3D y desarrollo, conocer personas talentosas y colaborar en proyectos reales — todo en español.',
+    'qs-p1':      'Aprende con otros',
+    'qs-p1-sub':  'Talleres semanales de arte y desarrollo',
+    'qs-p2':      'Conoce gente nueva',
+    'qs-p2-sub':  'Comunidad activa y abierta a todos',
+    'qs-p3':      'Encuentra talento',
+    'qs-p3-sub':  'Modeladores, artistas y creadores de VR',
+
+    // INDEX — GALERÍA
+    'galeria-label':  'GALERÍA',
+    'galeria-titulo': 'Momentos de la comunidad',
+    'galeria-ver':    'Ver todas las fotos →',
+
+    // INDEX — EVENTOS
+    'eventos-label':  'AGENDA',
+    'eventos-titulo': 'Eventos semanales',
+    'eventos-ver':    'Ver todos →',
+
+    // INDEX — EQUIPO
+    'equipo-label':  'PERSONAS',
+    'equipo-titulo': 'Equipo de administración',
+
+    // FOOTER
+    'footer-desc':    'Comunidad hispanohablante en VRChat dedicada al aprendizaje, el arte digital y la colaboración.',
+    'footer-nav':     'Navegación',
+    'footer-com':     'Comunidad',
+    'footer-sig':     'Síguenos',
+    'footer-copy1':   '© 2026 Forjadores Hispanos VR · Creado por Noch',
+    'footer-copy2':   'Actualizado por HorchataDuck · Pancho0308 · Umbra',
+  },
+
+  en: {
+    // NAVBAR
+    'nav-inicio':          'Home',
+    'nav-nosotros':        'About Us',
+    'nav-eventos':         'Events',
+    'nav-forjaversarios':  'Forjaversarios',
+    'nav-redes':           'Social Media',
+    'nav-colaboraciones':  'Collaborations',
+    'nav-donar':           'Donate ♡',
+
+    // INDEX — HERO
+    'hero-badge':    'COMMUNITY · VRCHAT · SPANISH-SPEAKING',
+    'hero-titulo':   'Forjadores<br><span class="hero-titulo-celeste">Hispanos</span>',
+    'hero-tagline':  'Learn, connect and discover Spanish-speaking talent inside VRChat.',
+    'hero-btn1':     'Meet the community',
+    'hero-btn2':     'Our social media',
+
+    // INDEX — QUIÉNES SOMOS
+    'qs-label':   'WHO WE ARE',
+    'qs-titulo':  'A place to learn, grow and meet people',
+    'qs-texto':   'We are a Spanish-speaking community in VRChat where you can learn about 2D art, 3D modeling and development, meet talented people and collaborate on real projects — all in Spanish.',
+    'qs-p1':      'Learn together',
+    'qs-p1-sub':  'Weekly art and development workshops',
+    'qs-p2':      'Meet new people',
+    'qs-p2-sub':  'Active community open to everyone',
+    'qs-p3':      'Find talent',
+    'qs-p3-sub':  'Modelers, artists and VR creators',
+
+    // INDEX — GALERÍA
+    'galeria-label':  'GALLERY',
+    'galeria-titulo': 'Community moments',
+    'galeria-ver':    'View all photos →',
+
+    // INDEX — EVENTOS
+    'eventos-label':  'SCHEDULE',
+    'eventos-titulo': 'Weekly events',
+    'eventos-ver':    'View all →',
+
+    // INDEX — EQUIPO
+    'equipo-label':  'PEOPLE',
+    'equipo-titulo': 'Administration team',
+
+    // FOOTER
+    'footer-desc':    'Spanish-speaking community in VRChat dedicated to learning, digital art and collaboration.',
+    'footer-nav':     'Navigation',
+    'footer-com':     'Community',
+    'footer-sig':     'Follow us',
+    'footer-copy1':   '© 2026 Forjadores Hispanos VR · Created by Noch',
+    'footer-copy2':   'Updated by HorchataDuck · Pancho0308 · Umbra',
+  }
 };
 
-// Espera 2 segundos y fuerza la carga
-setTimeout(cargarTwitterWidget, 2000);
+let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+function aplicarIdioma(idioma) {
+  const t = traducciones[idioma];
+  if (!t) return;
+
+  // Actualiza todos los elementos con data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    const clave = el.getAttribute('data-i18n');
+    if (t[clave]) {
+      el.innerHTML = t[clave];
+    }
+  });
+
+  // Actualiza el botón
+  const btn = document.getElementById('btn-idioma');
+  if (btn) btn.textContent = idioma === 'es' ? '🌐 EN' : '🌐 ES';
+
+  // Activa Google Translate para el resto
+  if (idioma === 'en') {
+    activarGoogleTranslate();
+  } else {
+    desactivarGoogleTranslate();
+  }
+
+  // Guarda preferencia
+  localStorage.setItem('idioma', idioma);
+  idiomaActual = idioma;
+}
+
+function cambiarIdioma() {
+  const nuevoIdioma = idiomaActual === 'es' ? 'en' : 'es';
+  aplicarIdioma(nuevoIdioma);
+}
+
+function activarGoogleTranslate() {
+  // Agrega el widget de Google Translate oculto si no existe
+  if (!document.getElementById('google-translate-script')) {
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=iniciarGoogleTranslate';
+    document.body.appendChild(script);
+  } else if (window.google && window.google.translate) {
+    window.google.translate.TranslateElement({
+      pageLanguage: 'es',
+      includedLanguages: 'en',
+      autoDisplay: false
+    }, 'google-translate-container');
+  }
+}
+
+function desactivarGoogleTranslate() {
+  // Restaura el idioma original removiendo las cookies de translate
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname;
+  location.reload();
+}
+
+// Función callback de Google Translate
+window.iniciarGoogleTranslate = function() {
+  new window.google.translate.TranslateElement({
+    pageLanguage: 'es',
+    includedLanguages: 'en',
+    autoDisplay: true
+  }, 'google-translate-container');
+};
+
+// Aplica el idioma guardado al cargar
+document.addEventListener('DOMContentLoaded', function() {
+  if (idiomaActual === 'en') {
+    aplicarIdioma('en');
+  }
+});
