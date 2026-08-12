@@ -2328,3 +2328,168 @@ body {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.7);
 }
+
+/* ── PÁGINAS DE EQUIPO ── */
+.equipo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  background: rgba(142, 207, 238, 0.08);
+  border: 0.5px solid rgba(142, 207, 238, 0.2);
+  border-radius: 20px;
+  padding: 4px 14px;
+  color: #8ecfee;
+  margin-bottom: 14px;
+}
+
+.equipo-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8ecfee;
+}
+
+.ph-nota {
+  font-size: 12px;
+  color: rgba(200, 225, 245, 0.35);
+  font-style: italic;
+  border-left: 2px solid rgba(142, 207, 238, 0.3);
+  padding-left: 12px;
+  margin-top: 16px;
+  max-width: 480px;
+}
+
+/* Foto del equipo */
+.equipo-foto-wrap {
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+  background: #c8dce8;
+}
+
+.equipo-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.equipo-foto-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,25,40,0.5) 0%, transparent 60%);
+}
+
+/* Miembros */
+#equipo-miembros {
+  background: var(--fondo);
+  padding: 64px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.miembro-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 20px 14px;
+  text-align: center;
+  height: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.miembro-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.miembro-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  border: 2px dashed #9ec4e0;
+  background: #e8f0f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d6fa3;
+}
+
+.miembro-foto {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: block;
+  border: 2px solid var(--borde);
+}
+
+.miembro-nombre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 3px;
+}
+
+.miembro-rol {
+  font-size: 10px;
+  color: var(--texto-suave);
+  margin-bottom: 12px;
+}
+
+.miembro-btn {
+  font-size: 10px;
+  padding: 4px 12px;
+  border: 1px solid var(--azul-principal);
+  color: var(--azul-principal);
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.miembro-btn:hover {
+  background: var(--azul-principal);
+  color: #ffffff;
+}
+
+/* Otros equipos */
+#otros-equipos {
+  background: var(--blanco);
+  padding: 48px 0;
+}
+
+.otro-equipo-card {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.otro-equipo-card:hover {
+  background: #f2f6fa;
+  border-color: var(--azul-principal);
+  transform: translateY(-2px);
+}
+
+.otro-equipo-stripe {
+  height: 3px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.otro-equipo-nombre {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texto);
+}
