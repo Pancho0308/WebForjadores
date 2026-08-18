@@ -389,6 +389,17 @@ const traducciones = {
     'footer-sig':     'Follow us',
     'footer-copy1':   '© 2026 Forjadores Hispanos VR · Created by Noch',
     'footer-copy2':   'Updated by HorchataDuck · Pancho0308 · Umbra',
+
+    // EVENTOS — contenido real
+    'evento1-tag':    'Event 1',
+    'evento1-titulo': 'Event 1',
+    'evento1-desc':   'Lorem ipsum event description in English.',
+    'evento1-fecha':  '🗓 Every Saturday',
+
+    'evento2-tag':    'Event 2',
+    'evento2-titulo': 'Event 2',
+    'evento2-desc':   'Lorem ipsum event description in English.',
+    'evento2-fecha':  '🗓 Sundays in the afternoon',
   }
 };
 
