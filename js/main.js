@@ -187,6 +187,20 @@ if (embedTabs.length > 0) {
   });
 }
 
+  let fotos = [];
+  let indiceActual = 0;
+
+  function mostrarFoto(indice) {
+  if (fotos.length === 0) return;
+  if (indice < 0) indice = fotos.length - 1;
+  if (indice >= fotos.length) indice = 0;
+  indiceActual = indice;
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const lightboxPie = document.querySelector('.lightbox-pie');
+  if (lightboxImg) lightboxImg.src = fotos[indiceActual].src;
+  if (lightboxPie) lightboxPie.textContent = fotos[indiceActual].pie;
+}
+
 // ── LIGHTBOX ──
 const lightbox = document.getElementById('lightbox');
 
@@ -197,8 +211,7 @@ if (lightbox) {
   const btnAnterior  = lightbox.querySelector('.lightbox-anterior');
   const btnSiguiente = lightbox.querySelector('.lightbox-siguiente');
 
-  let fotos = [];
-  let indiceActual = 0;
+
 
   // Recopila todas las fotos de la galería
   function recopilarFotos() {
@@ -211,15 +224,6 @@ if (lightbox) {
     });
   }
 
-  // Muestra una foto por índice
-  function mostrarFoto(indice) {
-    if (fotos.length === 0) return;
-    if (indice < 0) indice = fotos.length - 1;
-    if (indice >= fotos.length) indice = 0;
-    indiceActual = indice;
-    lightboxImg.src = fotos[indiceActual].src;
-    lightboxPie.textContent = fotos[indiceActual].pie;
-  }
 
   // Abre el lightbox al hacer click en una foto
   document.querySelectorAll('.galeria-foto[data-foto]').forEach(function(el, i) {
@@ -476,3 +480,67 @@ document.addEventListener('DOMContentLoaded', function() {
     aplicarIdioma('en');
   }
 });
+
+// ── FILTRO DE GALERÍA ──
+const galeriaTabs = document.querySelectorAll('.galeria-tab');
+
+if (galeriaTabs.length > 0) {
+  galeriaTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+
+      // Activa la pestaña
+      galeriaTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const categoria = tab.getAttribute('data-categoria');
+      const items = document.querySelectorAll('.galeria-item');
+      let visibles = 0;
+
+      items.forEach(function(item) {
+        if (categoria === 'todas' || item.getAttribute('data-categoria') === categoria) {
+          item.classList.remove('oculto');
+          visibles++;
+        } else {
+          item.classList.add('oculto');
+        }
+      });
+
+      // Actualiza el contador
+      const count = document.getElementById('galeria-count');
+      if (count) {
+        count.textContent = categoria === 'todas'
+          ? 'Mostrando todas las fotos'
+          : 'Mostrando ' + visibles + ' foto' + (visibles !== 1 ? 's' : '');
+      }
+    });
+  });
+}
+
+// ── LIGHTBOX GALERÍA ──
+const galeriaItems = document.querySelectorAll('.galeria-item[data-foto]');
+
+if (galeriaItems.length > 0 && lightbox) {
+  galeriaItems.forEach(function(el, i) {
+    el.addEventListener('click', function() {
+
+      // Recopila solo las fotos visibles en ese momento
+      const fotosVisibles = [];
+      document.querySelectorAll('.galeria-item[data-foto]:not(.oculto)').forEach(function(f) {
+        fotosVisibles.push({
+          src: f.getAttribute('data-foto'),
+          pie: f.getAttribute('data-pie') || ''
+        });
+      });
+
+      // Encuentra el índice de la foto clickeada dentro de las visibles
+      const fotoClickeada = el.getAttribute('data-foto');
+      const indice = fotosVisibles.findIndex(f => f.src === fotoClickeada);
+
+      // Abre el lightbox
+      fotos = fotosVisibles;
+      mostrarFoto(indice >= 0 ? indice : 0);
+      lightbox.classList.add('activo');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+}
