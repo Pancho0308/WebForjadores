@@ -792,8 +792,21 @@ body {
   overflow: visible;    /* ← permite que el canvas se extienda hacia abajo */
 }
 
-#starCanvas {
+/* Canvas de la página 404 — fixed, cubre toda la pantalla */
+.pagina-404 #starCanvas {
   position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-color: #05111f;
+  min-height: 100vh;
+}
+
+/* Canvas del Forjaversario Fragmentado — absolute, solo cubre hero + lore */
+.pagina-forjaversarios #starCanvas {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -2744,4 +2757,19 @@ body {
   border-color: rgba(142, 207, 238, 0.5);
   color: #8ecfee;
   background: rgba(142, 207, 238, 0.08);
+}
+
+.pagina-404 #footer-container {
+  position: relative;
+  z-index: 2;
+}
+
+.pagina-404 #footer {
+  position: relative;
+  z-index: 2;
+}
+
+.pagina-404 #error-404 {
+  position: relative;
+  z-index: 2;
 }

@@ -66,18 +66,15 @@ function resizeCanvas() {
   const lore = document.getElementById('fv-lore');
   const error404 = document.getElementById('error-404');
 
-  W = starCanvas.width = starCanvas.offsetWidth;
-
-  if (hero && lore) {
-    // Página de Forjaversario Fragmentado
+  if (error404) {
+    // En la 404 el canvas es fixed — debe coincidir exactamente con la ventana
+    W = starCanvas.width  = window.innerWidth;
+    H = starCanvas.height = window.innerHeight;
+  } else if (hero && lore) {
+    W = starCanvas.width  = starCanvas.offsetWidth;
     H = starCanvas.height = hero.offsetHeight + lore.offsetHeight;
-  } else if (error404) {
-    // Página 404 — ocupa toda la pantalla
-    H = starCanvas.height = Math.max(
-      document.body.scrollHeight,
-      window.innerHeight
-    );
   } else {
+    W = starCanvas.width  = starCanvas.offsetWidth;
     H = starCanvas.height = starCanvas.offsetHeight;
   }
 }
@@ -98,10 +95,19 @@ function resizeCanvas() {
     stars = Array.from({ length: N }, makeStar);
   }
 
-  document.addEventListener('mousemove', function(e) {
-  const rect = starCanvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
+document.addEventListener('mousemove', function(e) {
+  if (document.body.classList.contains('pagina-404')) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  } else {
+    const rect = starCanvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }
+});
+
+window.addEventListener('resize', function() {
+  initStars();
 });
 
 document.addEventListener('mouseleave', function() {
