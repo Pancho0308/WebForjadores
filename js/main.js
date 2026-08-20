@@ -59,17 +59,24 @@ if (starCanvas) {
   const ctx = starCanvas.getContext('2d');
   let W, H, stars = [];
   const mouse = { x: -999, y: -999 };
-  const N = 350, ATTRACT = 160;
+  const N = 1500, ATTRACT = 160;
 
 function resizeCanvas() {
   const hero = document.getElementById('fv-hero');
   const lore = document.getElementById('fv-lore');
+  const error404 = document.getElementById('error-404');
 
   W = starCanvas.width = starCanvas.offsetWidth;
 
-  // La altura del canvas = hero + lore juntos
   if (hero && lore) {
+    // Página de Forjaversario Fragmentado
     H = starCanvas.height = hero.offsetHeight + lore.offsetHeight;
+  } else if (error404) {
+    // Página 404 — ocupa toda la pantalla
+    H = starCanvas.height = Math.max(
+      document.body.scrollHeight,
+      window.innerHeight
+    );
   } else {
     H = starCanvas.height = starCanvas.offsetHeight;
   }

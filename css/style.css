@@ -793,7 +793,7 @@ body {
 }
 
 #starCanvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -2666,6 +2666,14 @@ body {
   text-align: center;
   max-width: 520px;
   margin: 0 auto;
+
+  /* ← El cuadro */
+  background: rgba(10, 25, 45, 0.75);
+  border: 0.5px solid rgba(142, 207, 238, 0.15);
+  border-radius: 16px;
+  padding: 48px 40px;
+  backdrop-filter: blur(12px);        /* ← desenfoca las estrellas detrás */
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .error-codigo {
@@ -2694,7 +2702,7 @@ body {
 
 .error-desc {
   font-size: 14px;
-  color: rgba(200, 225, 245, 0.5);
+  color: rgba(200, 225, 245, 0.55);
   line-height: 1.75;
   margin-bottom: 32px;
 }
@@ -2704,7 +2712,7 @@ body {
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .error-links-titulo {
