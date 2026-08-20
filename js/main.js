@@ -59,7 +59,7 @@ if (starCanvas) {
   const ctx = starCanvas.getContext('2d');
   let W, H, stars = [];
   const mouse = { x: -999, y: -999 };
-  const N = 1500, ATTRACT = 160;
+  const N = 1000, ATTRACT = 160;
 
 function resizeCanvas() {
   const hero = document.getElementById('fv-hero');
