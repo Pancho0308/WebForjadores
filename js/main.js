@@ -409,14 +409,14 @@ const traducciones = {
 
     // EVENTOS — contenido real
     'evento1-tag':    'Event 1',
-    'evento1-titulo': 'Event 1',
-    'evento1-desc':   'Lorem ipsum event description in English.',
-    'evento1-fecha':  '🗓 Every Saturday',
+    'evento1-titulo': 'Meeting to share',
+    'evento1-desc':   'Do you have questions about Unity/Blender or just want to meet other creators and have a good time? This meetup is for you! Whether you are a beginner or already experienced, come share your projects, get your questions answered in a community, and connect with new people.',
+    'evento1-fecha':  '🗓 Every Sunday',
 
     'evento2-tag':    'Event 2',
-    'evento2-titulo': 'Event 2',
-    'evento2-desc':   'Lorem ipsum event description in English.',
-    'evento2-fecha':  '🗓 Sundays in the afternoon',
+    'evento2-titulo': 'Forjaversarios',
+    'evento2-desc':   'Our annual event that brings together 3D creators, artists and developers from across the Spanish-speaking community to celebrate the anniversary of the Forjadores.',
+    'evento2-fecha':  '🗓 Once a year',
   }
 };
 
