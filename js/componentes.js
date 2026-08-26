@@ -88,7 +88,7 @@ function cargarFooter() {
             <p class="footer-copy">© 2026 Forjadores Hispanos VR · Creado por Noch</p>
           </div>
           <div class="col-12 col-md-6 text-md-end">
-            <p class="footer-copy">Actualizado por HorchataDuck · Pancho0308 · Umbra</p>
+            <p class="footer-copy">Actualizado por HorchataDuck · Pancho0308 · Umbra_VTuber</p>
           </div>
         </div>
       </div>
