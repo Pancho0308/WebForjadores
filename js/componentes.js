@@ -31,6 +31,7 @@ function cargarNavbar() {
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="redes.html">Redes</a></li>
             <li class="nav-item"><a class="nav-link" href="colaboraciones.html">Colaboraciones</a></li>
+            <li class="nav-item"><a class="nav-link" href="squad-forever-fest.html">Noved Squad</a></li>
             <li class="nav-item">
               <button class="btn-idioma" id="btn-idioma" onclick="cambiarIdioma()">
                 🌐 EN
