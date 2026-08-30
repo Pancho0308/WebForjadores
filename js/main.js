@@ -141,7 +141,12 @@ if (starCanvas) {
     mouse.y = -999;
   });
 
+  let rafId;
   function drawStars() {
+    if (document.hidden) {
+      rafId = requestAnimationFrame(drawStars);
+      return;
+    }
     ctx.clearRect(0, 0, W, H);
 
     stars.forEach((s) => {
@@ -178,8 +183,11 @@ if (starCanvas) {
       ctx.fillStyle = color;
       ctx.fill();
 
-      if (dist < ATTRACT * 0.6) {
-        stars.forEach((s2) => {
+      // líneas entre estrellas: solo cerca del cursor y muestreado (cada 3ª) para evitar O(n²) completo
+      if (glow > 0.3) {
+        for (let k = 0; k < stars.length; k += 3) {
+          const s2 = stars[k];
+          if (s2 === s) continue;
           const dx2 = s2.x - s.x;
           const dy2 = s2.y - s.y;
           const d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
@@ -191,7 +199,7 @@ if (starCanvas) {
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        });
+        }
       }
 
       s.y -= s.speed * 0.25;
@@ -199,12 +207,15 @@ if (starCanvas) {
       if (s.y > H + 5) s.y = -5;
     });
 
-    requestAnimationFrame(drawStars);
+    rafId = requestAnimationFrame(drawStars);
   }
 
   window.addEventListener("resize", initStars);
   initStars();
-  requestAnimationFrame(drawStars);
+  rafId = requestAnimationFrame(drawStars);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && !rafId) rafId = requestAnimationFrame(drawStars);
+  });
 }
 
 // ── TABS DE REDES SOCIALES ──
@@ -585,6 +596,222 @@ if (galeriaTabs.length > 0) {
 }
 
 // ── LIGHTBOX GALERÍA ──
+// ── MENSAJE ENCRIPTADO FV — va apareciendo el texto EN CLARO poco a poco en bloque ──
+// ponytail: ~30 líneas, sin lib, respeta prefers-reduced-motion
+(() => {
+  const block = document.querySelector("[data-decrypt-block]");
+  if (!block) return;
+  const plains = [...block.querySelectorAll("[data-plain]")];
+  if (!plains.length) return;
+  // guarda original
+  plains.forEach((el) => {
+    if (!el.dataset.final) el.dataset.final = el.textContent;
+  });
+  const GLYPHS = "█▓▒░▞▟▚01#<>·_";
+  // empieza encriptado — no se ve desencriptado hasta que toca desencriptar
+  plains.forEach((el) => {
+    const f = el.dataset.final;
+    let s = "";
+    for (let i = 0; i < f.length; i++)
+      s +=
+        f[i] === " " ? " " : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+    el.textContent = s;
+  });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    plains.forEach((s) => {
+      s.textContent = s.dataset.final;
+      s.classList.add("revealed");
+    });
+    block.classList.add("decrypt-done");
+    const a = document.querySelector("#fv-mensaje-bloque .fv-mensaje-alerta");
+    if (a) a.textContent = "✓ MENSAJE DESENCRIPTADO";
+    return;
+  }
+  const alerta = document.querySelector(
+    "#fv-mensaje-bloque .fv-mensaje-alerta",
+  );
+  function decryptEl(el, final) {
+    return new Promise((res) => {
+      el.classList.add("decrypting");
+      const len = final.length;
+      let frame = 0;
+      const steps = 14;
+      const id = setInterval(() => {
+        frame++;
+        const p = frame / steps;
+        const revealed = Math.floor(p * len);
+        let out = "";
+        for (let i = 0; i < len; i++) {
+          if (i < revealed) out += final[i];
+          else if (final[i] === " " || final[i] === "¡" || final[i] === "!")
+            out += final[i] === " " ? " " : final[i];
+          else out += GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        }
+        el.textContent = out;
+        if (frame >= steps) {
+          clearInterval(id);
+          el.textContent = final;
+          el.classList.remove("decrypting");
+          el.classList.add("revealed");
+          res();
+        }
+      }, 32);
+    });
+  }
+  let done = false;
+  async function run() {
+    if (done) return;
+    done = true;
+    await new Promise((r) => setTimeout(r, 400));
+    for (let i = 0; i < plains.length; i++) {
+      await decryptEl(plains[i], plains[i].dataset.final);
+      if (i < plains.length - 1) await new Promise((r) => setTimeout(r, 120));
+    }
+    // bloques vacíos -> intento fallido con error falso
+    const vacios = [...block.querySelectorAll(".censurado[data-error]")];
+    for (const el of vacios) {
+      el.classList.add("decrypt-trying");
+      const err = el.dataset.error;
+      for (let t = 0; t < 4; t++) {
+        el.textContent = Array.from(
+          { length: err.length },
+          () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
+        ).join("");
+        await new Promise((r) => setTimeout(r, 70));
+      }
+      el.textContent = err;
+      el.classList.remove("decrypt-trying");
+      el.classList.add("decrypt-error");
+      await new Promise((r) => setTimeout(r, 180));
+    }
+    block.classList.add("decrypt-done");
+    if (alerta)
+      alerta.textContent = "⚠ DESENCRIPTACIÓN PARCIAL — 4 BLOQUES CORRUPTOS";
+  }
+  // solo 1 vez al cargar la página
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", run, { once: true });
+  else run();
+  // no IntersectionObserver, no fallback, no re-trigger — queda desencriptado
+})();
+
+// ── DONATIVOS: gracias + confeti en elección de método ──
+// ponytail: sin librerías, canvas nativo, ~50 líneas
+(() => {
+  const links = document.querySelectorAll("#don-metodos .don-card-header");
+  const gracias = document.getElementById("don-gracias");
+  const canvas = document.getElementById("confetti-canvas");
+  if (!links.length || !gracias || !canvas) return;
+  const ctx = canvas.getContext("2d");
+  let animId = null;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  function launchConfetti() {
+    const colors = [
+      "#ff5e5b",
+      "#003087",
+      "#8ecfee",
+      "#ffd166",
+      "#06d6a0",
+      "#ffbe0b",
+    ];
+    const pieces = Array.from({ length: 120 }, () => ({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * 120,
+      r: 3 + Math.random() * 5,
+      c: colors[Math.floor(Math.random() * colors.length)],
+      vx: -3 + Math.random() * 6,
+      vy: 2 + Math.random() * 5,
+      rot: Math.random() * 360,
+      vr: -6 + Math.random() * 12,
+    }));
+    const start = performance.now();
+    function frame(now) {
+      const elapsed = now - start;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+      for (const p of pieces) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.12;
+        p.rot += p.vr;
+        if (p.y < canvas.height + 20) {
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rot * Math.PI) / 180);
+          ctx.fillStyle = p.c;
+          ctx.fillRect(-p.r, -p.r, p.r * 2, p.r * 2 * 0.6);
+          ctx.restore();
+        }
+      }
+      if (alive && elapsed < 3200) animId = requestAnimationFrame(frame);
+      else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    if (animId) cancelAnimationFrame(animId);
+    animId = requestAnimationFrame(frame);
+  }
+
+  function showGracias(href) {
+    gracias.hidden = false;
+    gracias.classList.remove("is-closing");
+    const heart = gracias.querySelector("#don-heart-rect");
+    if (heart) {
+      heart.style.animation = "none";
+      void heart.getBBox();
+      heart.style.animation = "";
+    }
+    launchConfetti();
+    // fade coordinado con la barrita (2.8s bar + fade) y autocierre a los 6s
+    setTimeout(() => {
+      gracias.classList.add("is-closing");
+    }, 5500);
+    setTimeout(() => {
+      gracias.hidden = true;
+      gracias.classList.remove("is-closing");
+    }, 6000);
+    if (href) {
+      try {
+        const u = new URL(href, location.href);
+        const h = u.hostname;
+        if (
+          h.endsWith("ko-fi.com") ||
+          h.endsWith("paypal.com") ||
+          h.endsWith("paypal.me")
+        ) {
+          const safeUrl = u.href;
+          // pi-lens-ignore: no-open-redirect-js
+          setTimeout(() => window.open(safeUrl, "_blank", "noopener"), 2800);
+        }
+      } catch {}
+    }
+  }
+
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      // permite ctrl/cmd/middle-click abrir sin intercepción
+      if (e.ctrlKey || e.metaKey || e.button === 1) return;
+      e.preventDefault();
+      showGracias(a.href);
+    });
+  });
+  // cerrar con Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !gracias.hidden) gracias.hidden = true;
+  });
+  gracias.addEventListener("click", (e) => {
+    if (e.target === gracias) gracias.hidden = true;
+  });
+})();
+
 const galeriaItems = document.querySelectorAll(".galeria-item[data-foto]");
 
 if (galeriaItems.length > 0 && lightbox) {

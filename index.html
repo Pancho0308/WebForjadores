@@ -1,330 +1,497 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forjadores Hispanos VR</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forjadores Hispanos VR</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="css/style.css">
-</head>
+    <link
+      rel="preload"
+      as="image"
+      href="img/hero-foto1.jpg"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-  <div class="lightbox-overlay"></div>
-  <div class="lightbox-contenido">
-    <button class="lightbox-cerrar">✕</button>
-    <button class="lightbox-anterior">‹</button>
-    <button class="lightbox-siguiente">›</button>
-    <img src="" alt="" class="lightbox-img">
-    <p class="lightbox-pie"></p>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-contenido">
+      <button class="lightbox-cerrar">✕</button>
+      <button class="lightbox-anterior">‹</button>
+      <button class="lightbox-siguiente">›</button>
+      <img src="" alt="" class="lightbox-img" />
+      <p class="lightbox-pie"></p>
+    </div>
   </div>
-</div>
 
-<body>
+  <body>
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
 
-  <!-- NAVBAR -->
-<div id="navbar-container"></div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-foto">
-
-    <div class="hero-slide activo">
-      <img src="img/hero-foto1.jpg" alt="Comunidad Forjadores Hispanos">
-    </div>
-    <div class="hero-slide">
-      <img src="img/hero-foto2.jpg" alt="Evento Forjadores">
-    </div>
-    <div class="hero-slide">
-      <img src="img/hero-foto3.jpg" alt="Taller Forjadores">
-    </div>
-    <div class="hero-slide">
-      <img src="img/Forjaversario2026.png" alt="Taller Forjadores">
-    </div>
-
-
-    <div class="hero-overlay"></div>
-    <div class="container hero-contenido">
-      <div class="row align-items-end">
-        <div class="col-lg-7">
-          <p class="hero-badge" data-i18n="hero-badge">COMUNIDAD · VRCHAT · HISPANOHABLANTE</p>
-          <h1 class="hero-titulo" data-i18n="hero-titulo">
-            Forjadores<br>
-            <span class="hero-titulo-celeste">Hispanos</span>
-          </h1>
-          <p class="hero-tagline" data-i18n="hero-tagline">
-            Aprende, conecta y descubre talento hispanohablante dentro de VRChat.
-          </p>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-foto">
+        <div class="hero-slide activo">
+          <img
+            src="img/hero-foto1.jpg"
+            alt="Comunidad Forjadores Hispanos"
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async"
+            style="aspect-ratio: 16/9"
+          />
         </div>
-        <div class="col-lg-5 d-flex flex-column align-items-end gap-2">
-          <a href="nosotros.html" class="btn btn-hero-blanco" data-i18n="hero-btn1">Conoce la comunidad</a>
-          <a href="redes.html" class="btn btn-hero-ghost" data-i18n="hero-btn2">Nuestras redes</a>
+        <div class="hero-slide">
+          <img
+            src="img/hero-foto2.jpg"
+            alt="Evento Forjadores"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="hero-slide">
+          <img
+            src="img/hero-foto3.jpg"
+            alt="Taller Forjadores"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="hero-slide">
+          <img
+            src="img/Forjaversario2026.png"
+            alt="Taller Forjadores"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="hero-overlay"></div>
+        <div class="container hero-contenido">
+          <div class="row align-items-end">
+            <div class="col-lg-7">
+              <p class="hero-badge" data-i18n="hero-badge">
+                COMUNIDAD · VRCHAT · HISPANOHABLANTE
+              </p>
+              <h1 class="hero-titulo" data-i18n="hero-titulo">
+                Forjadores<br />
+                <span class="hero-titulo-celeste">Hispanos</span>
+              </h1>
+              <p class="hero-tagline" data-i18n="hero-tagline">
+                Aprende, conecta y descubre talento hispanohablante dentro de
+                VRChat.
+              </p>
+            </div>
+            <div class="col-lg-5 d-flex flex-column align-items-end gap-2">
+              <a
+                href="nosotros.html"
+                class="btn btn-hero-blanco"
+                data-i18n="hero-btn1"
+                >Conoce la comunidad</a
+              >
+              <a
+                href="redes.html"
+                class="btn btn-hero-ghost"
+                data-i18n="hero-btn2"
+                >Nuestras redes</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-dots">
+          <span class="hero-dot activo"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
         </div>
       </div>
-    </div>
+    </section>
 
-
-    <div class="hero-dots">
-      <span class="hero-dot activo"></span>
-      <span class="hero-dot"></span>
-      <span class="hero-dot"></span>
-      <span class="hero-dot"></span>
-    </div>
-
-  </div>
-</section>
-
-<!-- GALERÍA -->
-<section id="galeria">
-  <div class="container">
-
-    <div class="galeria-header">
-      <div>
-        <p class="seccion-label" data-i18n="galeria-label">GALERÍA</p>
-        <h2 class="seccion-titulo" data-i18n="galeria-titulo">Momentos de la comunidad</h2>
-      </div>
-      <a href="galeria.html" class="galeria-ver-todas" data-i18n="galeria-ver">Ver todas las fotos →</a>
-    </div>
-
-
-    <div class="row g-3">
-
-
-      <div class="col-12 col-lg-6">
-        <div class="galeria-foto galeria-foto-grande"
-            data-foto="img/galeria/foto1.png" 
-            data-pie="Forjaversario 2025">
-          <img src="img/galeria/foto1.png" alt="Forjaversario 2025">
-          <div class="galeria-overlay"></div>
-          <p class="galeria-pie">Forjaversario 2025</p>
+    <!-- GALERÍA -->
+    <section id="galeria">
+      <div class="container">
+        <div class="galeria-header">
+          <div>
+            <p class="seccion-label" data-i18n="galeria-label">GALERÍA</p>
+            <h2 class="seccion-titulo" data-i18n="galeria-titulo">
+              Momentos de la comunidad
+            </h2>
+          </div>
+          <a
+            href="galeria.html"
+            class="galeria-ver-todas"
+            data-i18n="galeria-ver"
+            >Ver todas las fotos →</a
+          >
         </div>
-      </div>
 
-      <div class="col-12 col-lg-6">
         <div class="row g-3">
-
-          <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena"
-                data-foto="img/galeria/foto2.png" 
-                data-pie="Uranic">
-              <img src="img/galeria/foto2.png" alt="Uranic">
+          <div class="col-12 col-lg-6">
+            <div
+              class="galeria-foto galeria-foto-grande"
+              data-foto="img/galeria/foto1.png"
+              data-pie="Forjaversario 2025"
+            >
+              <img
+                src="img/galeria/foto1.png"
+                width="1280"
+                height="720"
+                loading="lazy"
+                decoding="async"
+                alt="Forjaversario 2025"
+              />
               <div class="galeria-overlay"></div>
-              <p class="galeria-pie">Uranic</p>
+              <p class="galeria-pie">Forjaversario 2025</p>
             </div>
           </div>
 
-          <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena"
-                data-foto="img/galeria/foto3.png" 
-                data-pie="BaseBall">
-              <img src="img/galeria/foto3.png" alt="BaseBall">
-              <div class="galeria-overlay"></div>
-              <p class="galeria-pie">BaseBall</p>
+          <div class="col-12 col-lg-6">
+            <div class="row g-3">
+              <div class="col-6">
+                <div
+                  class="galeria-foto galeria-foto-pequena"
+                  data-foto="img/galeria/foto2.png"
+                  data-pie="Uranic"
+                >
+                  <img
+                    src="img/galeria/foto2.png"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Uranic"
+                  />
+                  <div class="galeria-overlay"></div>
+                  <p class="galeria-pie">Uranic</p>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div
+                  class="galeria-foto galeria-foto-pequena"
+                  data-foto="img/galeria/foto3.png"
+                  data-pie="BaseBall"
+                >
+                  <img
+                    src="img/galeria/foto3.png"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="BaseBall"
+                  />
+                  <div class="galeria-overlay"></div>
+                  <p class="galeria-pie">BaseBall</p>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div
+                  class="galeria-foto galeria-foto-pequena"
+                  data-foto="img/galeria/foto4.png"
+                  data-pie="Dia de muertos"
+                >
+                  <img
+                    src="img/galeria/foto4.png"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Dia de muertos"
+                  />
+                  <div class="galeria-overlay"></div>
+                  <p class="galeria-pie">Dia de muertos</p>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div
+                  class="galeria-foto galeria-foto-pequena"
+                  data-foto="img/galeria/foto5.png"
+                  data-pie="PJKT"
+                >
+                  <img
+                    src="img/galeria/foto5.png"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="PJKT"
+                  />
+                  <div class="galeria-overlay"></div>
+                  <p class="galeria-pie">PJKT</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIÉNES SOMOS -->
+    <section id="quienes-somos">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6">
+            <p class="seccion-label" data-i18n="qs-label">QUIÉNES SOMOS</p>
+            <h2 class="seccion-titulo" data-i18n="qs-titulo">
+              Un lugar para aprender, crecer y conocer gente
+            </h2>
+            <p class="seccion-texto" data-i18n="qs-texto">
+              Somos una comunidad hispanohablante en VRChat donde puedes
+              aprender sobre arte 2D, modelado 3D y desarrollo, conocer personas
+              talentosas y colaborar en proyectos reales — todo en español.
+            </p>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="d-flex flex-column gap-3">
+              <div class="pildora">
+                <div
+                  class="pildora-dot"
+                  style="background-color: var(--azul-principal)"
+                ></div>
+                <div>
+                  <p class="pildora-titulo" data-i18n="qs-p1">
+                    Aprende con otros
+                  </p>
+                  <p class="pildora-sub" data-i18n="qs-p1-sub">
+                    Talleres semanales de arte y desarrollo
+                  </p>
+                </div>
+              </div>
+
+              <div class="pildora">
+                <div
+                  class="pildora-dot"
+                  style="background-color: var(--texto)"
+                ></div>
+                <div>
+                  <p class="pildora-titulo" data-i18n="qs-p2">
+                    Conoce gente nueva
+                  </p>
+                  <p class="pildora-sub" data-i18n="qs-p2-sub">
+                    Comunidad activa y abierta a todos
+                  </p>
+                </div>
+              </div>
+
+              <div class="pildora">
+                <div
+                  class="pildora-dot"
+                  style="background-color: var(--azul-claro)"
+                ></div>
+                <div>
+                  <p class="pildora-titulo" data-i18n="qs-p3">
+                    Encuentra talento
+                  </p>
+                  <p class="pildora-sub" data-i18n="qs-p3-sub">
+                    Modeladores, artistas y creadores de VR
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTOS -->
+    <section id="eventos">
+      <div class="container">
+        <div class="row align-items-end mb-4">
+          <div class="col">
+            <p class="seccion-label" data-i18n="eventos-label">AGENDA</p>
+            <h2 class="seccion-titulo mb-0" data-i18n="eventos-titulo">
+              Eventos semanales
+            </h2>
+          </div>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+          <div class="col-12 col-md-5">
+            <div class="evento-card">
+              <div
+                class="evento-stripe"
+                style="background-color: var(--azul-principal)"
+              ></div>
+              <div class="evento-body">
+                <p class="evento-tag" data-i18n="evento1-tag">Evento 1</p>
+                <h3 class="evento-titulo" data-i18n="evento1-titulo">
+                  Reunion para compartir
+                </h3>
+                <p class="evento-desc" data-i18n="evento1-desc">
+                  ¿Tienes dudas con Unity ⁄ Blender o simplemente quieres
+                  conocer a otros creadores y pasar un buen rato? ¡Esta reunión
+                  es para tiǃ No importa si estás empezando o si ya tienes
+                  experiencia‚ ven a compartir tus proyectos‚ resolver preguntas
+                  en comunidad y conectar con gente nueva․
+                </p>
+                <p class="evento-fecha" data-i18n="evento1-fecha">
+                  🗓 Todos los Domingos
+                </p>
+              </div>
             </div>
           </div>
 
-          <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena"
-                data-foto="img/galeria/foto4.png" 
-                data-pie="Dia de muertos">
-              <img src="img/galeria/foto4.png" alt="Dia de muertos">
-              <div class="galeria-overlay"></div>
-              <p class="galeria-pie">Dia de muertos</p>
+          <div class="col-12 col-md-5">
+            <div class="evento-card">
+              <div
+                class="evento-stripe"
+                style="background-color: var(--azul-claro)"
+              ></div>
+              <div class="evento-body">
+                <p class="evento-tag" data-i18n="evento2-tag">Evento 2</p>
+                <h3 class="evento-titulo" data-i18n="evento2-titulo">
+                  Forjaversarios
+                </h3>
+                <p class="evento-desc" data-i18n="evento2-desc">
+                  Nuestro evento anual que reúne a creadores 3D, artistas y
+                  desarrolladores de toda la comunidad hispanohablante para
+                  celebrar el aniversario de los Forjadores.
+                </p>
+                <p class="evento-fecha" data-i18n="evento2-fecha">
+                  🗓 Una vez al año
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPO -->
+    <section id="equipo">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col">
+            <p class="seccion-label" data-i18n="equipo-label">PERSONAS</p>
+            <h2 class="seccion-titulo mb-0" data-i18n="equipo-titulo">
+              Equipo de administración
+            </h2>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="equipo-card">
+              <div
+                class="equipo-avatar"
+                style="
+                  background-color: #e8f0f7;
+                  color: #2d6fa3;
+                  border-color: #9ec4e0;
+                "
+              >
+                N
+              </div>
+              <h3 class="equipo-nombre">Nico</h3>
+              <p class="equipo-rol" data-i18n="rol-fundador">Fundador</p>
             </div>
           </div>
 
-          <div class="col-6">
-            <div class="galeria-foto galeria-foto-pequena"
-                data-foto="img/galeria/foto5.png" 
-                data-pie="PJKT">
-              <img src="img/galeria/foto5.png" alt="PJKT">
-              <div class="galeria-overlay"></div>
-              <p class="galeria-pie">PJKT</p>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="equipo-card">
+              <div
+                class="equipo-avatar"
+                style="
+                  background-color: #e4f4ef;
+                  color: #1a7a5e;
+                  border-color: #9ecfc0;
+                "
+              >
+                H
+              </div>
+              <h3 class="equipo-nombre">Pancho0308</h3>
+              <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
             </div>
           </div>
 
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- QUIÉNES SOMOS -->
-<section id="quienes-somos">
-  <div class="container">
-
-    <div class="row align-items-center gy-4">
-
-      <div class="col-lg-6">
-        <p class="seccion-label" data-i18n="qs-label">QUIÉNES SOMOS</p>
-        <h2 class="seccion-titulo" data-i18n="qs-titulo">Un lugar para aprender, crecer y conocer gente</h2>
-        <p class="seccion-texto" data-i18n="qs-texto">
-          Somos una comunidad hispanohablante en VRChat donde puedes aprender sobre
-          arte 2D, modelado 3D y desarrollo, conocer personas talentosas y colaborar
-          en proyectos reales — todo en español.
-        </p>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="d-flex flex-column gap-3">
-
-          <div class="pildora">
-            <div class="pildora-dot" style="background-color: var(--azul-principal);"></div>
-            <div>
-              <p class="pildora-titulo" data-i18n="qs-p1">Aprende con otros</p>
-              <p class="pildora-sub" data-i18n="qs-p1-sub">Talleres semanales de arte y desarrollo</p>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="equipo-card">
+              <div
+                class="equipo-avatar"
+                style="
+                  background-color: #f0ebfa;
+                  color: #6a4dad;
+                  border-color: #c4b0e8;
+                "
+              >
+                U
+              </div>
+              <h3 class="equipo-nombre">Noch</h3>
+              <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
             </div>
           </div>
 
-          <div class="pildora">
-            <div class="pildora-dot" style="background-color: var(--texto);"></div>
-            <div>
-              <p class="pildora-titulo" data-i18n="qs-p2">Conoce gente nueva</p>
-              <p class="pildora-sub" data-i18n="qs-p2-sub">Comunidad activa y abierta a todos</p>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="equipo-card">
+              <div
+                class="equipo-avatar"
+                style="
+                  background-color: #faf0d8;
+                  color: #9a6a10;
+                  border-color: #e0c080;
+                "
+              >
+                Z
+              </div>
+              <h3 class="equipo-nombre">MrIvanovich</h3>
+              <p class="equipo-rol">Administración</p>
             </div>
           </div>
 
-          <div class="pildora">
-            <div class="pildora-dot" style="background-color: var(--azul-claro);"></div>
-            <div>
-              <p class="pildora-titulo" data-i18n="qs-p3">Encuentra talento</p>
-              <p class="pildora-sub" data-i18n="qs-p3-sub">Modeladores, artistas y creadores de VR</p>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="equipo-card">
+              <div
+                class="equipo-avatar"
+                style="
+                  background-color: #faf0d8;
+                  color: #9a6a10;
+                  border-color: #e0c080;
+                "
+              >
+                Z
+              </div>
+              <h3 class="equipo-nombre">Esteban</h3>
+              <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
             </div>
           </div>
-
         </div>
+
+        <!-- Nota: cuando esten fotos de avatar, reemplaza el div equipo-avatar -->
+        <!-- por un <img src="img/equipo/noch.jpg" class="equipo-foto" alt="Noch"> -->
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
 
-<!-- EVENTOS -->
-<section id="eventos">
-  <div class="container">
+    <div id="google-translate-container" style="display: none"></div>
 
-    <div class="row align-items-end mb-4">
-      <div class="col">
-        <p class="seccion-label" data-i18n="eventos-label">AGENDA</p>
-        <h2 class="seccion-titulo mb-0" data-i18n="eventos-titulo">Eventos semanales</h2>
-      </div>
-    </div>
-
-    <div class="row g-3 justify-content-center">
-
-      <div class="col-12 col-md-5">
-        <div class="evento-card">
-          <div class="evento-stripe" style="background-color: var(--azul-principal);"></div>
-          <div class="evento-body">
-            <p class="evento-tag" data-i18n="evento1-tag">Evento 1</p>
-            <h3 class="evento-titulo" data-i18n="evento1-titulo">Reunion para compartir</h3>
-            <p class="evento-desc" data-i18n="evento1-desc">¿Tienes dudas con Unity ⁄ Blender o simplemente quieres conocer a otros creadores y pasar un buen rato? ¡Esta reunión es para tiǃ No importa si estás empezando o si ya tienes experiencia‚ ven a compartir tus proyectos‚ resolver preguntas en comunidad y conectar con gente nueva․</p>
-            <p class="evento-fecha" data-i18n="evento1-fecha">🗓 Todos los Domingos</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-md-5">
-        <div class="evento-card">
-          <div class="evento-stripe" style="background-color: var(--azul-claro);"></div>
-          <div class="evento-body">
-            <p class="evento-tag" data-i18n="evento2-tag">Evento 2</p>
-            <h3 class="evento-titulo" data-i18n="evento2-titulo">Forjaversarios</h3>
-            <p class="evento-desc" data-i18n="evento2-desc">Nuestro evento anual que reúne a creadores 3D, artistas y desarrolladores de toda la comunidad hispanohablante para celebrar el aniversario de los Forjadores. </p>
-            <p class="evento-fecha" data-i18n="evento2-fecha">🗓 Una vez al año</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- EQUIPO -->
-<section id="equipo">
-  <div class="container">
-
-    <div class="row mb-4">
-      <div class="col">
-        <p class="seccion-label" data-i18n="equipo-label">PERSONAS</p>
-        <h2 class="seccion-titulo mb-0" data-i18n="equipo-titulo">Equipo de administración</h2>
-      </div>
-    </div>
-
-    <div class="row g-3">
-
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="equipo-card">
-          <div class="equipo-avatar" style="background-color: #e8f0f7; color: #2d6fa3; border-color: #9ec4e0;">
-            N
-          </div>
-          <h3 class="equipo-nombre">Nico</h3>
-          <p class="equipo-rol" data-i18n="rol-fundador">Fundador</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="equipo-card">
-          <div class="equipo-avatar" style="background-color: #e4f4ef; color: #1a7a5e; border-color: #9ecfc0;">
-            H
-          </div>
-          <h3 class="equipo-nombre">Pancho0308</h3>
-          <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="equipo-card">
-          <div class="equipo-avatar" style="background-color: #f0ebfa; color: #6a4dad; border-color: #c4b0e8;">
-            U
-          </div>
-          <h3 class="equipo-nombre">Noch</h3>
-          <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="equipo-card">
-          <div class="equipo-avatar" style="background-color: #faf0d8; color: #9a6a10; border-color: #e0c080;">
-            Z
-          </div>
-          <h3 class="equipo-nombre">MrIvanovich</h3>
-          <p class="equipo-rol">Administración</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="equipo-card">
-          <div class="equipo-avatar" style="background-color: #faf0d8; color: #9a6a10; border-color: #e0c080;">
-            Z
-          </div>
-          <h3 class="equipo-nombre">Esteban</h3>
-          <p class="equipo-rol" data-i18n="rol-admin">Administración</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Nota: cuando esten fotos de avatar, reemplaza el div equipo-avatar -->
-    <!-- por un <img src="img/equipo/noch.jpg" class="equipo-foto" alt="Noch"> -->
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<div id="footer-container"></div>
-
-
-<div id="google-translate-container" style="display:none;"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/componentes.js"></script>
-<script src="js/main.js"></script>
-<script src="js/auth.js"></script> 
-
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="js/componentes.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/auth.js" defer></script>
+  </body>
 </html>

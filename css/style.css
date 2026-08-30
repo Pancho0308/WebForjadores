@@ -944,12 +944,127 @@ body {
   margin-bottom: 0;
 }
 
-/* Texto censurado ████ */
+/* Texto censurado ████ — queda bloqueado, sin animar */
 .censurado {
   background: rgba(142, 207, 238, 0.25);
   color: transparent;
   border-radius: 3px;
   user-select: none;
+  padding: 0 3px;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+/* Bloques vacíos — error falso de desencriptación */
+.censurado.decrypt-error {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+  border: 0.5px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+  animation: fv-error-pulse 0.4s ease 1;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  display: inline-block;
+  max-width: 100%;
+}
+@keyframes fv-error-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+    filter: brightness(1);
+  }
+  30% {
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.55);
+    filter: brightness(1.25);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+    filter: brightness(1);
+  }
+}
+.censurado.decrypt-trying {
+  color: rgba(252, 165, 165, 0.9);
+  text-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+}
+
+/* Texto en claro — es el que se desencripta poco a poco en bloque */
+[data-plain] {
+  transition: text-shadow 0.3s ease;
+}
+[data-plain].decrypting {
+  text-shadow: 0 0 6px rgba(142, 207, 238, 0.45);
+}
+[data-plain].revealed {
+  text-shadow: none;
+}
+/* bloque terminal — reserva altura para que el error no desplace el layout */
+#fv-mensaje-bloque {
+  position: relative;
+  contain: layout style;
+}
+.fv-mensaje {
+  min-height: 148px;
+}
+.fv-mensaje-texto {
+  overflow-wrap: anywhere;
+}
+.fv-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #8ecfee;
+  animation: fv-blink 0.9s steps(2, jump-none) 4;
+  font-weight: 700;
+}
+@keyframes fv-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+.fv-alerta-punto {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8ecfee;
+  margin-right: 6px;
+  vertical-align: 1px;
+  box-shadow: 0 0 8px rgba(142, 207, 238, 0.7);
+  animation: fv-pulse 1.4s ease-in-out 2;
+}
+@keyframes fv-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+}
+/* respeta reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  .fv-cursor,
+  .fv-alerta-punto {
+    animation: none;
+  }
+  .censurado {
+    transition: none;
+  }
+}
+[data-decrypt-block].decrypt-done .fv-cursor,
+[data-decrypt-block].decrypt-done .fv-alerta-punto {
+  opacity: 0;
+  animation: none;
+}
+[data-decrypt-block].decrypt-done .fv-alerta-punto {
+  opacity: 1;
+  box-shadow: none;
 }
 
 .fv-grito {
@@ -3742,3 +3857,75 @@ body {
 [data-theme="dark"] .red-icono.instagram-icono {
   filter: brightness(0.92) saturate(0.95);
 }
+
+/* Gracias + confeti donativos */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  display: block;
+}
+.don-gracias {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 25, 40, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  padding: 20px;
+}
+.don-gracias[hidden] {
+  display: none !important;
+}
+.don-gracias-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 28px 24px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  animation: don-pop 0.35s ease;
+  overflow: hidden;
+}
+@keyframes don-pop {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.don-gracias-heart{
+  width: 64px; height: 56px; margin: 0 auto 14px;
+  display: grid; place-items: center;
+  filter: drop-shadow(0 3px 10px rgba(255,94,91,0.28));
+}
+.don-gracias-heart svg{ width: 64px; height: 56px; overflow: visible; transform: scaleX(1.02); }
+.don-heart-outline-svg{ opacity: 1; }
+.don-heart-fill-svg{ transform-origin: bottom; }
+/* el recorte se anima: de abajo hacia arriba */
+#don-heart-rect{ transform: translateY(88px); animation: don-heart-fill 2.8s ease forwards; }
+@keyframes don-heart-fill{ from{ transform: translateY(88px)} to{ transform: translateY(0)} }
+.don-gracias-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto);
+  margin: 0 0 8px;
+}
+.don-gracias-texto {
+  font-size: 13px;
+  color: var(--texto-suave);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+/* fade del overlay al autocerrar */
+.don-gracias.is-closing{ animation: don-fade 0.45s ease forwards; }
+@keyframes don-fade{ from{ opacity:1 } to{ opacity:0 } }

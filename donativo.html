@@ -163,7 +163,12 @@
                 <span class="don-arrow" aria-hidden="true">›</span>
               </a>
               <div class="don-card-qr">
-                <img src="img/qr-kofi.png" alt="QR Ko-Fi Forjadores Hispanos" />
+                <img
+                  src="img/qr-kofi.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="QR Ko-Fi Forjadores Hispanos"
+                />
               </div>
               <div class="don-card-body">
                 <p class="don-card-desc">
@@ -203,6 +208,8 @@
               <div class="don-card-qr">
                 <img
                   src="img/qr-paypal.png"
+                  loading="lazy"
+                  decoding="async"
                   alt="QR PayPal Forjadores Hispanos"
                 />
               </div>
@@ -217,6 +224,37 @@
         </div>
       </div>
     </section>
+
+    <!-- GRACIAS + CONFETI -->
+    <div id="don-gracias" class="don-gracias" aria-live="polite" hidden>
+      <div class="don-gracias-card">
+        <div class="don-gracias-heart" aria-hidden="true">
+        <svg viewBox="0 0 100 88" width="64" height="56" role="img" aria-hidden="true">
+          <defs>
+            <clipPath id="don-heart-clip">
+              <rect id="don-heart-rect" x="0" y="0" width="100" height="88"/>
+            </clipPath>
+            <linearGradient id="don-heart-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff5e5b"/><stop offset="100%" stop-color="#ff1f4b"/>
+            </linearGradient>
+          </defs>
+          <!-- outline ancho -->
+          <path class="don-heart-outline-svg" d="M50 78 L22 58 C6 44 2 28 16 16 C24 8 34 7 43 15 L50 22 L57 15 C66 7 76 8 84 16 C98 28 94 44 78 58 L50 78Z" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="3.2" stroke-linejoin="round"/>
+          <!-- fill recortado que se llena -->
+          <g clip-path="url(#don-heart-clip)">
+            <path class="don-heart-fill-svg" d="M50 78 L22 58 C6 44 2 28 16 16 C24 8 34 7 43 15 L50 22 L57 15 C66 7 76 8 84 16 C98 28 94 44 78 58 L50 78Z" fill="url(#don-heart-grad)" stroke="#ff5e5b" stroke-width="2.2" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+        <h3 class="don-gracias-titulo">¡Gracias por apoyar a Forjadores!</h3>
+        <p class="don-gracias-texto">
+          Tu ayuda mantiene los eventos y la comunidad viva. Te redirigimos en
+          un momento…
+        </p>
+
+      </div>
+    </div>
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
     <!-- NOTA FINAL -->
     <div id="don-cierre">
@@ -238,9 +276,12 @@
     <!-- Contenedor oculto de Google Translate -->
     <div id="google-translate-container" style="display: none"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/componentes.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="js/componentes.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/auth.js" defer></script>
   </body>
 </html>
