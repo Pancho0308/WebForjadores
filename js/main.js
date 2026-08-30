@@ -341,7 +341,8 @@ const traducciones = {
     "nav-forjaversarios": "Forjaversarios",
     "nav-redes": "Redes",
     "nav-colaboraciones": "Colaboraciones",
-    "nav-donar": "Donar ♡",
+    "nav-donar":
+      'Donar <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
     // INDEX — HERO
     "hero-badge": "COMUNIDAD · VRCHAT · HISPANOHABLANTE",
@@ -396,7 +397,8 @@ const traducciones = {
     "nav-forjaversarios": "Forjaversarios",
     "nav-redes": "Social Media",
     "nav-colaboraciones": "Collaborations",
-    "nav-donar": "Donate ♡",
+    "nav-donar":
+      'Donate <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
     // INDEX — HERO
     "hero-badge": "COMMUNITY · VRCHAT · SPANISH-SPEAKING",
