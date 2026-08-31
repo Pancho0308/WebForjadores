@@ -595,7 +595,6 @@ if (galeriaTabs.length > 0) {
   });
 }
 
-// ── LIGHTBOX GALERÍA ──
 // ── MENSAJE ENCRIPTADO FV — va apareciendo el texto EN CLARO poco a poco en bloque ──
 // ponytail: ~30 líneas, sin lib, respeta prefers-reduced-motion
 (() => {
@@ -812,6 +811,7 @@ if (galeriaTabs.length > 0) {
   });
 })();
 
+// ── LIGHTBOX GALERÍA ──
 const galeriaItems = document.querySelectorAll(".galeria-item[data-foto]");
 
 if (galeriaItems.length > 0 && lightbox) {
