@@ -242,79 +242,177 @@ if (embedTabs.length > 0) {
 
 let fotos = [];
 let indiceActual = 0;
-
-function mostrarFoto(indice) {
-  if (fotos.length === 0) return;
-  if (indice < 0) indice = fotos.length - 1;
-  if (indice >= fotos.length) indice = 0;
-  indiceActual = indice;
-  const lightboxImg = document.querySelector(".lightbox-img");
-  const lightboxPie = document.querySelector(".lightbox-pie");
-  if (lightboxImg) lightboxImg.src = fotos[indiceActual].src;
-  if (lightboxPie) lightboxPie.textContent = fotos[indiceActual].pie;
-}
-
-// ── LIGHTBOX ──
 const lightbox = document.getElementById("lightbox");
-
-if (lightbox) {
-  const btnCerrar = lightbox.querySelector(".lightbox-cerrar");
-  const btnAnterior = lightbox.querySelector(".lightbox-anterior");
-  const btnSiguiente = lightbox.querySelector(".lightbox-siguiente");
-
-  // Recopila todas las fotos de la galería
-  function recopilarFotos() {
-    fotos = [];
-    document.querySelectorAll(".galeria-foto[data-foto]").forEach((el) => {
-      fotos.push({
-        src: el.getAttribute("data-foto"),
-        pie: el.getAttribute("data-pie") || "",
-      });
-    });
+const lbImg = lightbox?.querySelector(".lightbox-img");
+const lbPie = lightbox?.querySelector(".lightbox-pie");
+let lbPan = { x: 0, y: 0 };
+function lbScale() {
+  return window.innerWidth <= 640 ? 1.25 : 1.6;
+}
+function lbApply() {
+  if (!lbImg) return;
+  lbImg.style.transform = lbImg.classList.contains("zoomed")
+    ? `translate(${lbPan.x}px, ${lbPan.y}px) scale(${lbScale()})`
+    : "";
+}
+function lbResetPan() {
+  lbPan = { x: 0, y: 0 };
+  if (lbImg) {
+    lbImg.style.transform = "";
+    lbImg.classList.remove("zoomed", "dragging");
   }
-
-  // Abre el lightbox al hacer click en una foto
-  document.querySelectorAll(".galeria-foto[data-foto]").forEach((el, i) => {
-    el.addEventListener("click", () => {
-      recopilarFotos();
-      mostrarFoto(i);
-      lightbox.classList.add("activo");
-      document.body.style.overflow = "hidden"; // evita scroll de fondo
+}
+function mostrarFoto(i) {
+  if (!fotos.length || !lbImg) return;
+  if (i < 0) i = fotos.length - 1;
+  if (i >= fotos.length) i = 0;
+  indiceActual = i;
+  lbResetPan();
+  lbImg.src = fotos[indiceActual].src;
+  lbImg.alt = fotos[indiceActual].pie || "";
+  if (lbPie)
+    lbPie.textContent = fotos[indiceActual].pie
+      ? `${indiceActual + 1} / ${fotos.length} — ${fotos[indiceActual].pie}`
+      : `${indiceActual + 1} / ${fotos.length}`;
+}
+function cerrarLightbox() {
+  if (!lightbox) return;
+  lbResetPan();
+  lightbox.classList.add("closing");
+  setTimeout(() => {
+    lightbox.classList.remove("activo", "closing");
+  }, 200);
+  document.body.style.overflow = "";
+}
+function abrirLightbox(lista, idx) {
+  fotos = lista;
+  mostrarFoto(idx);
+  lightbox.classList.remove("closing");
+  lightbox.classList.add("activo");
+  document.body.style.overflow = "hidden";
+}
+// ── LIGHTBOX (delegado, unificado) ──
+if (lightbox && lbImg) {
+  const qFotos = () => [
+    ...document.querySelectorAll(
+      ".galeria-item[data-foto], .galeria-foto[data-foto], .gal-foto-small[data-foto]",
+    ),
+  ];
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest(
+      ".galeria-item[data-foto], .galeria-foto[data-foto], .gal-foto-small[data-foto]",
+    );
+    if (!card) return;
+    const visibles = qFotos().filter((el) => !el.classList.contains("oculto"));
+    const lista = visibles.length ? visibles : qFotos();
+    const datos = lista.map((el) => ({
+      src: el.getAttribute("data-foto"),
+      pie: el.getAttribute("data-pie") || el.querySelector("img")?.alt || "",
+    }));
+    const idx = datos.findIndex(
+      (d) => d.src === card.getAttribute("data-foto"),
+    );
+    abrirLightbox(datos, idx >= 0 ? idx : 0);
+  });
+  lightbox
+    .querySelector(".lightbox-cerrar")
+    ?.addEventListener("click", cerrarLightbox);
+  lightbox
+    .querySelector(".lightbox-overlay")
+    ?.addEventListener("click", cerrarLightbox);
+  lightbox
+    .querySelector(".lightbox-anterior")
+    ?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mostrarFoto(indiceActual - 1);
     });
+  lightbox
+    .querySelector(".lightbox-siguiente")
+    ?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mostrarFoto(indiceActual + 1);
+    });
+  // — click zoom (ignora si hubo drag)
+  let lbDrag = { active: false, sx: 0, sy: 0, ox: 0, oy: 0, moved: false };
+  lbImg.addEventListener("click", () => {
+    if (lbDrag.moved) {
+      lbDrag.moved = false;
+      return;
+    }
+    const isZoomed = lbImg.classList.contains("zoomed");
+    if (isZoomed) lbResetPan();
+    else {
+      lbPan = { x: 0, y: 0 };
+      lbImg.classList.add("zoomed");
+      lbApply();
+    }
   });
-
-  // Cierra con el botón X
-  btnCerrar.addEventListener("click", () => {
-    lightbox.classList.remove("activo");
-    document.body.style.overflow = "";
+  // — drag pan cuando hay zoom (pointer unifica mouse + touch)
+  lbImg.addEventListener("pointerdown", (e) => {
+    if (!lbImg.classList.contains("zoomed")) return;
+    lbDrag = {
+      active: true,
+      sx: e.clientX,
+      sy: e.clientY,
+      ox: lbPan.x,
+      oy: lbPan.y,
+      moved: false,
+    };
+    lbImg.classList.add("dragging");
+    lbImg.setPointerCapture(e.pointerId);
+    e.preventDefault();
   });
-
-  // Cierra al hacer click en el overlay
-  lightbox.querySelector(".lightbox-overlay").addEventListener("click", () => {
-    lightbox.classList.remove("activo");
-    document.body.style.overflow = "";
+  lbImg.addEventListener("pointermove", (e) => {
+    if (!lbDrag.active) return;
+    const dx = e.clientX - lbDrag.sx,
+      dy = e.clientY - lbDrag.sy;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) lbDrag.moved = true;
+    lbPan.x = lbDrag.ox + dx;
+    lbPan.y = lbDrag.oy + dy;
+    lbApply();
   });
-
-  // Navega entre fotos
-  btnAnterior.addEventListener("click", () => {
-    mostrarFoto(indiceActual - 1);
-  });
-
-  btnSiguiente.addEventListener("click", () => {
-    mostrarFoto(indiceActual + 1);
-  });
-
-  // Navega con las flechas del teclado
+  const lbEndDrag = (e) => {
+    if (!lbDrag.active) return;
+    lbDrag.active = false;
+    lbImg.classList.remove("dragging");
+    try {
+      lbImg.releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+  lbImg.addEventListener("pointerup", lbEndDrag);
+  lbImg.addEventListener("pointercancel", lbEndDrag);
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("activo")) return;
     if (e.key === "ArrowRight") mostrarFoto(indiceActual + 1);
     if (e.key === "ArrowLeft") mostrarFoto(indiceActual - 1);
     if (e.key === "Escape") {
-      lightbox.classList.remove("activo");
-      document.body.style.overflow = "";
+      if (lbImg.classList.contains("zoomed")) lbResetPan();
+      else cerrarLightbox();
     }
   });
+  // — swipe para cambiar foto (solo si no hay zoom)
+  let tx = 0;
+  lightbox.addEventListener(
+    "touchstart",
+    (e) => {
+      if (lbImg.classList.contains("zoomed")) return;
+      tx = e.changedTouches[0].screenX;
+    },
+    { passive: true },
+  );
+  lightbox.addEventListener(
+    "touchend",
+    (e) => {
+      if (lbImg.classList.contains("zoomed")) return;
+      const dx = e.changedTouches[0].screenX - tx;
+      if (Math.abs(dx) > 50) mostrarFoto(indiceActual + (dx < 0 ? 1 : -1));
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", lbApply);
 }
+
+
 
 // ── WIDGET DE X ──
 function cargarTwitterWidget() {
@@ -583,6 +681,14 @@ if (galeriaTabs.length > 0) {
         }
       });
 
+      // Placeholder si categoría vacía — oculta grids para que no deje hueco debajo
+      const vacia = document.getElementById("galeria-vacia");
+      const galMosaico = document.getElementById("galeria-mosaico");
+      const galGrid = document.getElementById("galeria-grid");
+      const esVacia = visibles === 0;
+      if (vacia) vacia.hidden = !esVacia;
+      if (galMosaico) galMosaico.hidden = esVacia;
+      if (galGrid) galGrid.hidden = esVacia;
       // Actualiza el contador
       const count = document.getElementById("galeria-count");
       if (count) {
@@ -811,32 +917,36 @@ if (galeriaTabs.length > 0) {
   });
 })();
 
-// ── LIGHTBOX GALERÍA ──
-const galeriaItems = document.querySelectorAll(".galeria-item[data-foto]");
+// (unificado arriba — ponytail: sin duplicar handlers)
 
-if (galeriaItems.length > 0 && lightbox) {
-  galeriaItems.forEach((el) => {
-    el.addEventListener("click", () => {
-      // Recopila solo las fotos visibles en ese momento
-      const fotosVisibles = [];
-      document
-        .querySelectorAll(".galeria-item[data-foto]:not(.oculto)")
-        .forEach((f) => {
-          fotosVisibles.push({
-            src: f.getAttribute("data-foto"),
-            pie: f.getAttribute("data-pie") || "",
-          });
-        });
-
-      // Encuentra el índice de la foto clickeada dentro de las visibles
-      const fotoClickeada = el.getAttribute("data-foto");
-      const indice = fotosVisibles.findIndex((f) => f.src === fotoClickeada);
-
-      // Abre el lightbox
-      fotos = fotosVisibles;
-      mostrarFoto(indice >= 0 ? indice : 0);
-      lightbox.classList.add("activo");
-      document.body.style.overflow = "hidden";
-    });
-  });
-}
+// ── CAROUSEL ediciones anteriores — flechas solo si no caben ──
+(function(){
+  const track=document.querySelector('#fv-ediciones .fv-track');
+  const prev=document.querySelector('.fv-arrow--prev');
+  const next=document.querySelector('.fv-arrow--next');
+  if(!track||!prev||!next) return;
+  const update=()=>{
+    const max=track.scrollWidth - track.clientWidth - 2;
+    const atStart=track.scrollLeft <= 2;
+    const atEnd=track.scrollLeft >= max;
+    const needs=track.scrollWidth > track.clientWidth + 4;
+    prev.hidden=next.hidden=!needs;
+    if(needs){
+      prev.disabled=atStart;
+      next.disabled=atEnd;
+    }
+  };
+  const scrollByCard=(dir)=>{
+    const card=track.querySelector('.fv-col');
+    const gap=12;
+    const w=(card?card.offsetWidth:300)+gap;
+    track.scrollBy({left: w*dir, behavior: 'smooth'});
+  };
+  prev.addEventListener('click', ()=>scrollByCard(-1));
+  next.addEventListener('click', ()=>scrollByCard(1));
+  track.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  // observer por si cambian cards
+  new ResizeObserver(update).observe(track);
+  update();
+})();
