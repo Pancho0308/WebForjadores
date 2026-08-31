@@ -1,3 +1,45 @@
+// ── PLACEHOLDER IMÁGENES ROTAS ──
+// ponytail: un handler delegado, sin tocar cada <img>, sin libs
+function escXml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+function buildPlaceholder(alt) {
+  const raw = alt && alt.trim() ? alt.trim().slice(0, 80) : "";
+  const hasAlt = !!raw;
+  // si hay alt: línea 1 = alt, línea 2 = "imagen no disponible"; si no: solo "Imagen no disponible"
+  const textBlock = hasAlt
+    ? `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">${escXml(raw)}</tspan><tspan x="200" dy="18" font-size="12" fill="#5a6d7e">imagen no disponible</tspan>`
+    : `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">Imagen no disponible</tspan>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#e8edf2"/><path d="M120 190 L175 115 L225 165 L260 135 L285 190 Z" fill="#c9d6e3"/><circle cx="178" cy="92" r="20" fill="#c9d6e3"/><text x="200" y="228" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" fill="#3d4f5e">${textBlock}</text></svg>`;
+  return "data:image/svg+xml," + encodeURIComponent(svg);
+}
+function handleBrokenImg(img) {
+  if (!img || img.dataset.imgFallback) return;
+  img.dataset.imgFallback = "1";
+  img.classList.add("img-broken");
+  const alt = img.alt || img.getAttribute("alt") || "";
+  img.src = buildPlaceholder(alt);
+  if (!img.alt || img.alt.trim() === "") img.alt = "Imagen no disponible";
+}
+window.addEventListener(
+  "error",
+  (e) => {
+    const t = e.target;
+    if (t && t.tagName === "IMG") handleBrokenImg(t);
+  },
+  true,
+);
+// por si alguna ya falló antes de registrar el handler (img cacheada con 404)
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("img").forEach((img) => {
+    if (img.complete && img.naturalWidth === 0 && img.src) handleBrokenImg(img);
+  });
+});
+
 window.addEventListener("scroll", () => {
   const navbar = document.getElementById("navbar-principal");
   if (navbar) {
@@ -411,8 +453,6 @@ if (lightbox && lbImg) {
   );
   window.addEventListener("resize", lbApply);
 }
-
-
 
 // ── WIDGET DE X ──
 function cargarTwitterWidget() {
@@ -920,32 +960,32 @@ if (galeriaTabs.length > 0) {
 // (unificado arriba — ponytail: sin duplicar handlers)
 
 // ── CAROUSEL ediciones anteriores — flechas solo si no caben ──
-(function(){
-  const track=document.querySelector('#fv-ediciones .fv-track');
-  const prev=document.querySelector('.fv-arrow--prev');
-  const next=document.querySelector('.fv-arrow--next');
-  if(!track||!prev||!next) return;
-  const update=()=>{
-    const max=track.scrollWidth - track.clientWidth - 2;
-    const atStart=track.scrollLeft <= 2;
-    const atEnd=track.scrollLeft >= max;
-    const needs=track.scrollWidth > track.clientWidth + 4;
-    prev.hidden=next.hidden=!needs;
-    if(needs){
-      prev.disabled=atStart;
-      next.disabled=atEnd;
+(() => {
+  const track = document.querySelector("#fv-ediciones .fv-track");
+  const prev = document.querySelector(".fv-arrow--prev");
+  const next = document.querySelector(".fv-arrow--next");
+  if (!track || !prev || !next) return;
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth - 2;
+    const atStart = track.scrollLeft <= 2;
+    const atEnd = track.scrollLeft >= max;
+    const needs = track.scrollWidth > track.clientWidth + 4;
+    prev.hidden = next.hidden = !needs;
+    if (needs) {
+      prev.disabled = atStart;
+      next.disabled = atEnd;
     }
   };
-  const scrollByCard=(dir)=>{
-    const card=track.querySelector('.fv-col');
-    const gap=12;
-    const w=(card?card.offsetWidth:300)+gap;
-    track.scrollBy({left: w*dir, behavior: 'smooth'});
+  const scrollByCard = (dir) => {
+    const card = track.querySelector(".fv-col");
+    const gap = 12;
+    const w = (card ? card.offsetWidth : 300) + gap;
+    track.scrollBy({ left: w * dir, behavior: "smooth" });
   };
-  prev.addEventListener('click', ()=>scrollByCard(-1));
-  next.addEventListener('click', ()=>scrollByCard(1));
-  track.addEventListener('scroll', update, {passive:true});
-  window.addEventListener('resize', update);
+  prev.addEventListener("click", () => scrollByCard(-1));
+  next.addEventListener("click", () => scrollByCard(1));
+  track.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
   // observer por si cambian cards
   new ResizeObserver(update).observe(track);
   update();
