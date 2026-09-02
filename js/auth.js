@@ -21,7 +21,6 @@ async function loginConDiscord() {
 async function logout() {
   await sb.auth.signOut();
   window.location.href = 'index.html';
-  
 }
 
 // ── CARGAR PERFIL ──
