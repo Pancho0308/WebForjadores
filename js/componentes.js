@@ -106,10 +106,10 @@ function cargarFooter() {
         <hr class="footer-hr">
         <div class="row align-items-center footer-bottom">
           <div class="col-12 col-md-6">
-            <p class="footer-copy" data-i18n="footer-copy1">© 2026 Forjadores Hispanos VR · Creado por Noch</p>
+            <p class="footer-copy" data-i18n="footer-copy1">© 2026 Forjadores Hispanos VR · Creado por <span class="credit-name credit-noch">Noch</span></p>
           </div>
           <div class="col-12 col-md-6 text-md-end">
-            <p class="footer-copy" data-i18n="footer-copy2">Actualizado por HorchataDuck · Pancho0308 · Umbra</p>
+            <p class="footer-copy" data-i18n="footer-copy2">Actualizado por <span class="credit-name credit-horchata">HorchataDuck</span> · <span class="credit-name credit-pancho">Pancho0308</span> · <span class="credit-name credit-umbra">Umbra</span> · <span class="credit-name credit-bbccris">bbccris</span></p>
           </div>
         </div>
       </div>

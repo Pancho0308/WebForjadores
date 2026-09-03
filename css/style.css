@@ -761,6 +761,16 @@ body::after {
   margin-bottom: 0;
 }
 
+.credit-name {
+  font-weight: 600;
+}
+
+.credit-horchata { color: #7dd3fc; }
+.credit-noch { color: #f472b6; }
+.credit-pancho { color: #2dd4bf; }
+.credit-umbra { color: #c4b5fd; }
+.credit-bbccris { color: #f0cf8a; }
+
 .hero-slide {
   position: absolute;
   inset: 0;

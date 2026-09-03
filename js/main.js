@@ -549,8 +549,8 @@ const traducciones = {
     "footer-com": "Comunidad",
     "footer-sig": "Síguenos",
     "footer-donar": "Donativos",
-    "footer-copy1": "© 2026 Forjadores Hispanos VR · Creado por Noch",
-    "footer-copy2": "Actualizado por HorchataDuck · Pancho0308 · Umbra",
+    "footer-copy1": "© 2026 Forjadores Hispanos VR · Creado por <span class=\"credit-name credit-noch\">Noch</span>",
+    "footer-copy2": "Actualizado por <span class=\"credit-name credit-horchata\">HorchataDuck</span> · <span class=\"credit-name credit-pancho\">Pancho0308</span> · <span class=\"credit-name credit-umbra\">Umbra</span> · <span class=\"credit-name credit-bbccris\">bbccris</span>",
   },
 
   en: {
@@ -610,8 +610,8 @@ const traducciones = {
     "footer-com": "Community",
     "footer-sig": "Follow us",
     "footer-donar": "Donations",
-    "footer-copy1": "© 2026 Forjadores Hispanos VR · Created by Noch",
-    "footer-copy2": "Updated by HorchataDuck · Pancho0308 · Umbra",
+    "footer-copy1": "© 2026 Forjadores Hispanos VR · Created by <span class=\"credit-name credit-noch\">Noch</span>",
+    "footer-copy2": "Updated by <span class=\"credit-name credit-horchata\">HorchataDuck</span> · <span class=\"credit-name credit-pancho\">Pancho0308</span> · <span class=\"credit-name credit-umbra\">Umbra</span> · <span class=\"credit-name credit-bbccris\">bbccris</span>",
 
     // EVENTOS — contenido real
     "evento1-tag": "Event 1",
