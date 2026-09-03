@@ -52,11 +52,19 @@ window.addEventListener("scroll", () => {
 });
 
 // ── TEMA OSCURO ──
-function aplicarTema(tema) {
+function aplicarTema(tema, guardar = true) {
+  const esOscuro = tema === "dark";
   document.documentElement.setAttribute("data-theme", tema);
-  localStorage.setItem("tema", tema);
+  if (guardar) localStorage.setItem("tema", tema);
   const btn = document.getElementById("btn-tema");
-  if (btn) btn.textContent = tema === "dark" ? "☀️" : "🌙";
+  if (btn) {
+    btn.textContent = esOscuro ? "☀" : "☾";
+    btn.setAttribute(
+      "aria-label",
+      esOscuro ? "Activar modo claro" : "Activar modo oscuro",
+    );
+    btn.title = btn.getAttribute("aria-label");
+  }
 }
 // oxlint-disable-next-line no-unused-vars
 function toggleTema() {
@@ -70,12 +78,14 @@ function toggleTema() {
 }
 (function initTema() {
   const guardado = localStorage.getItem("tema");
-  const tema =
-    guardado ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light");
-  aplicarTema(tema);
+  const preferenciaSistema = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  );
+  aplicarTema(guardado || (preferenciaSistema.matches ? "dark" : "light"), false);
+  preferenciaSistema.addEventListener("change", (event) => {
+    if (!localStorage.getItem("tema"))
+      aplicarTema(event.matches ? "dark" : "light", false);
+  });
 })();
 
 const slides = document.querySelectorAll(".hero-slide");
@@ -484,12 +494,14 @@ if (tabTwitter) {
 const traducciones = {
   es: {
     // NAVBAR
+    "nav-sub": "Comunidad VRChat hispanohablante",
     "nav-inicio": "Inicio",
     "nav-nosotros": "Nosotros",
     "nav-eventos": "Eventos",
     "nav-forjaversarios": "Forjaversarios",
     "nav-redes": "Redes",
     "nav-colaboraciones": "Colaboraciones",
+    "nav-noved": "Novedades Squad",
     "nav-donar":
       'Donar <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
@@ -528,24 +540,29 @@ const traducciones = {
     "equipo-label": "PERSONAS",
     "equipo-titulo": "Equipo de administración",
 
+    "rol-fundador": "Fundador",
+    "rol-admin": "Administración",
     // FOOTER
     "footer-desc":
       "Comunidad hispanohablante en VRChat dedicada al aprendizaje, el arte digital y la colaboración.",
     "footer-nav": "Navegación",
     "footer-com": "Comunidad",
     "footer-sig": "Síguenos",
+    "footer-donar": "Donativos",
     "footer-copy1": "© 2026 Forjadores Hispanos VR · Creado por Noch",
     "footer-copy2": "Actualizado por HorchataDuck · Pancho0308 · Umbra",
   },
 
   en: {
     // NAVBAR
+    "nav-sub": "Spanish-speaking VRChat community",
     "nav-inicio": "Home",
     "nav-nosotros": "About Us",
     "nav-eventos": "Events",
     "nav-forjaversarios": "Forjaversarios",
     "nav-redes": "Social Media",
     "nav-colaboraciones": "Collaborations",
+    "nav-noved": "Squad News",
     "nav-donar":
       'Donate <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
@@ -584,12 +601,15 @@ const traducciones = {
     "equipo-label": "PEOPLE",
     "equipo-titulo": "Administration team",
 
+    "rol-fundador": "Founder",
+    "rol-admin": "Administration",
     // FOOTER
     "footer-desc":
       "Spanish-speaking community in VRChat dedicated to learning, digital art and collaboration.",
     "footer-nav": "Navigation",
     "footer-com": "Community",
     "footer-sig": "Follow us",
+    "footer-donar": "Donations",
     "footer-copy1": "© 2026 Forjadores Hispanos VR · Created by Noch",
     "footer-copy2": "Updated by HorchataDuck · Pancho0308 · Umbra",
 
@@ -608,13 +628,15 @@ const traducciones = {
   },
 };
 
-let idiomaActual = localStorage.getItem("idioma") || "es";
+const idiomaActual = window.location.pathname.includes("/es/") ? "es" : "en";
 
-function aplicarIdioma(idioma) {
-  const t = traducciones[idioma];
-  if (!t) return;
+function aplicarIdioma() {
+  const t = traducciones[idiomaActual];
+  document.documentElement.lang = idiomaActual;
 
-  // Actualiza todos los elementos con data-i18n
+  const selector = document.getElementById("selector-idioma");
+  if (selector) selector.value = idiomaActual;
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const clave = el.getAttribute("data-i18n");
     if (t[clave]) {
@@ -623,77 +645,16 @@ function aplicarIdioma(idioma) {
       el.innerHTML = t[clave];
     }
   });
-
-  // Actualiza el botón
-  const btn = document.getElementById("btn-idioma");
-  if (btn) btn.textContent = idioma === "es" ? "🌐 EN" : "🌐 ES";
-
-  // Activa Google Translate para el resto
-  if (idioma === "en") {
-    activarGoogleTranslate();
-  } else {
-    desactivarGoogleTranslate();
-  }
-
-  // Guarda preferencia
-  localStorage.setItem("idioma", idioma);
-  idiomaActual = idioma;
 }
 
-// oxlint-disable-next-line no-unused-vars
-function cambiarIdioma() {
-  const nuevoIdioma = idiomaActual === "es" ? "en" : "es";
-  aplicarIdioma(nuevoIdioma);
+function cambiarIdioma(idioma) {
+  if (idioma === idiomaActual) return;
+  const pagina = window.location.pathname.split("/").pop() || "index.html";
+  window.location.href = idioma === "es" ? `es/${pagina}` : `../${pagina}`;
 }
 
-function activarGoogleTranslate() {
-  // Agrega el widget de Google Translate oculto si no existe
-  if (!document.getElementById("google-translate-script")) {
-    const script = document.createElement("script");
-    script.id = "google-translate-script";
-    script.src =
-      "https://translate.google.com/translate_a/element.js?cb=iniciarGoogleTranslate";
-    document.body.appendChild(script);
-  } else if (window.google && window.google.translate) {
-    window.google.translate.TranslateElement(
-      {
-        pageLanguage: "es",
-        includedLanguages: "en",
-        autoDisplay: false,
-      },
-      "google-translate-container",
-    );
-  }
-}
+document.addEventListener("DOMContentLoaded", aplicarIdioma);
 
-function desactivarGoogleTranslate() {
-  // Restaura el idioma original removiendo las cookies de translate
-  document.cookie =
-    "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  document.cookie =
-    "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" +
-    location.hostname;
-  location.reload();
-}
-
-// Función callback de Google Translate
-window.iniciarGoogleTranslate = () => {
-  new window.google.translate.TranslateElement(
-    {
-      pageLanguage: "es",
-      includedLanguages: "en",
-      autoDisplay: true,
-    },
-    "google-translate-container",
-  );
-};
-
-// Aplica el idioma guardado al cargar
-document.addEventListener("DOMContentLoaded", () => {
-  if (idiomaActual === "en") {
-    aplicarIdioma("en");
-  }
-});
 
 // ── FILTRO DE GALERÍA ──
 const galeriaTabs = document.querySelectorAll(".galeria-tab");
@@ -831,7 +792,7 @@ if (galeriaTabs.length > 0) {
     }
     block.classList.add("decrypt-done");
     if (alerta)
-      alerta.textContent = "⚠ DESENCRIPTACIÓN PARCIAL — 4 BLOQUES CORRUPTOS";
+      alerta.textContent = idiomaActual === "es" ? "⚠ DESENCRIPTACIÓN PARCIAL — 4 BLOQUES CORRUPTOS" : "⚠ PARTIAL DECRYPTION — 4 CORRUPTED BLOCKS";
   }
   // solo 1 vez al cargar la página
   if (document.readyState === "loading")

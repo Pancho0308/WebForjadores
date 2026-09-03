@@ -43,16 +43,16 @@ async function cargarPerfil() {
 
   // Rellena los datos
   document.getElementById('perfil-nombre').textContent =
-    meta.full_name || meta.name || 'Usuario';
+    meta.full_name || meta.name || (document.documentElement.lang === 'es' ? 'Usuario' : 'User');
 
   document.getElementById('perfil-avatar').src =
-    meta.avatar_url || 'img/logo.png';
+    meta.avatar_url || `${document.documentElement.lang === 'es' ? '../' : ''}img/logo.png`;
 
   document.getElementById('perfil-discord-id').textContent =
     meta.provider_id || '—';
 
   document.getElementById('perfil-fecha').textContent =
-    new Date(user.created_at).toLocaleDateString('es-ES', {
+    new Date(user.created_at).toLocaleDateString(document.documentElement.lang === 'es' ? 'es-ES' : 'en-US', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
 
@@ -75,13 +75,13 @@ async function guardarPerfil(user, meta) {
 // ── ACTUALIZAR NAVBAR según sesión ──
 async function actualizarNavbarConSesion() {
   const { data: { session } } = await sb.auth.getSession();
-  const btnIdioma = document.getElementById('btn-idioma');
-  if (!btnIdioma) return;
+  const btnTema = document.getElementById('btn-tema');
+  if (!btnTema) return;
 
   if (session) {
     const meta = session.user.user_metadata;
     const avatar = meta.avatar_url;
-    const nombre = meta.full_name || meta.name || 'Perfil';
+    const nombre = meta.full_name || meta.name || (document.documentElement.lang === 'es' ? 'Perfil' : 'Profile');
 
     // Inserta el avatar en el navbar
     const navItem = document.createElement('li');
@@ -92,7 +92,7 @@ async function actualizarNavbarConSesion() {
         <span>${nombre.split(' ')[0]}</span>
       </a>
     `;
-    btnIdioma.closest('li').insertAdjacentElement('afterend', navItem);
+    btnTema.closest('li').insertAdjacentElement('afterend', navItem);
   }
 }
 
