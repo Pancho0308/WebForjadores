@@ -629,6 +629,18 @@ const traducciones = {
 };
 
 const idiomaActual = window.location.pathname.includes("/es/") ? "es" : "en";
+const idiomaGuardado = localStorage.getItem("idioma");
+const idiomaPreferido =
+  idiomaGuardado === "es" || idiomaGuardado === "en"
+    ? idiomaGuardado
+    : navigator.language.startsWith("es")
+      ? "es"
+      : "en";
+
+if (idiomaPreferido !== idiomaActual) {
+  const pagina = window.location.pathname.split("/").pop() || "index.html";
+  window.location.replace(idiomaPreferido === "es" ? `es/${pagina}` : `../${pagina}`);
+}
 
 function aplicarIdioma() {
   const t = traducciones[idiomaActual];
@@ -648,6 +660,7 @@ function aplicarIdioma() {
 }
 
 function cambiarIdioma(idioma) {
+  localStorage.setItem("idioma", idioma);
   if (idioma === idiomaActual) return;
   const pagina = window.location.pathname.split("/").pop() || "index.html";
   window.location.href = idioma === "es" ? `es/${pagina}` : `../${pagina}`;
