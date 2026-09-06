@@ -11,7 +11,7 @@ async function loginConDiscord() {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'discord',
     options: {
-      redirectTo: window.location.origin + '/perfil.html'
+      redirectTo: new URL('perfil.html', window.location.href).href
     }
   });
   if (error) console.error('Error al iniciar sesión:', error.message);
