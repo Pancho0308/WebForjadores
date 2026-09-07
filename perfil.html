@@ -23,7 +23,7 @@
         <p class="page-hero-breadcrumb">
           <a href="index.html">Home</a> → My Profile
         </p>
-        <h1 class="page-hero-titulo">Mi <span>Profile</span></h1>
+        <h1 class="page-hero-titulo">My <span>Profile</span></h1>
       </div>
     </div>
 
@@ -52,8 +52,9 @@
 
         <!-- Estado: loggeado -->
         <div id="perfil-usuario" class="perfil-estado" style="display: none">
-          <div class="perfil-card">
-            <div class="perfil-header">
+          <article class="perfil-card">
+            <div class="perfil-cover" aria-hidden="true"></div>
+            <header class="perfil-header">
               <img
                 id="perfil-avatar"
                 src=""
@@ -61,31 +62,62 @@
                 class="perfil-avatar-img"
               />
               <div class="perfil-header-info">
-                <h2 class="perfil-nombre" id="perfil-nombre">Cargando...</h2>
+                <div class="perfil-conexion"><span></span> Connected via Discord</div>
+                <h2 class="perfil-nombre" id="perfil-nombre">Loading...</h2>
                 <span class="perfil-rol-badge" id="perfil-rol">Member</span>
               </div>
               <button class="btn-logout" id="btn-logout">Sign out</button>
-            </div>
+            </header>
 
             <div class="perfil-body">
-              <div class="perfil-info-grid">
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Discord ID</div>
-                  <div class="perfil-info-valor" id="perfil-discord-id">—</div>
-                </div>
+              <main class="perfil-main">
+                <section class="perfil-panel">
+                  <p class="perfil-panel-label">COMMUNITY MEMBER</p>
+                  <h3>Your place in Forjadores</h3>
+                  <p>
+                    Explore what the community is creating, meet other members
+                    and find a space where you can participate.
+                  </p>
+                </section>
 
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Member from</div>
-                  <div class="perfil-info-valor" id="perfil-fecha">—</div>
-                </div>
+                <nav class="perfil-enlaces" aria-label="Community spaces">
+                  <a href="nosotros.html" class="perfil-enlace">
+                    <strong>Community</strong>
+                    <span>Meet the teams and members →</span>
+                  </a>
+                  <a href="galeria.html" class="perfil-enlace">
+                    <strong>Gallery</strong>
+                    <span>See moments from our events →</span>
+                  </a>
+                  <a href="colaboraciones.html" class="perfil-enlace">
+                    <strong>Collaborations</strong>
+                    <span>Discover partner communities →</span>
+                  </a>
+                </nav>
+              </main>
 
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Community</div>
-                  <div class="perfil-info-valor">Forjadores Hispanos VR</div>
-                </div>
-              </div>
+              <aside class="perfil-sidebar" aria-label="Profile details">
+                <section class="perfil-panel">
+                  <p class="perfil-panel-label">PROFILE</p>
+                  <h3>Member details</h3>
+                  <div class="perfil-info-grid">
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Discord ID</div>
+                      <div class="perfil-info-valor" id="perfil-discord-id">—</div>
+                    </div>
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Member since</div>
+                      <div class="perfil-info-valor" id="perfil-fecha">—</div>
+                    </div>
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Community</div>
+                      <div class="perfil-info-valor">Forjadores Hispanos VR</div>
+                    </div>
+                  </div>
+                </section>
+              </aside>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>

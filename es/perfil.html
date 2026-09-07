@@ -52,8 +52,9 @@
 
         <!-- Estado: loggeado -->
         <div id="perfil-usuario" class="perfil-estado" style="display: none">
-          <div class="perfil-card">
-            <div class="perfil-header">
+          <article class="perfil-card">
+            <div class="perfil-cover" aria-hidden="true"></div>
+            <header class="perfil-header">
               <img
                 id="perfil-avatar"
                 src=""
@@ -61,31 +62,62 @@
                 class="perfil-avatar-img"
               />
               <div class="perfil-header-info">
+                <div class="perfil-conexion"><span></span> Conectado mediante Discord</div>
                 <h2 class="perfil-nombre" id="perfil-nombre">Cargando...</h2>
                 <span class="perfil-rol-badge" id="perfil-rol">Miembro</span>
               </div>
               <button class="btn-logout" id="btn-logout">Cerrar sesión</button>
-            </div>
+            </header>
 
             <div class="perfil-body">
-              <div class="perfil-info-grid">
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Discord ID</div>
-                  <div class="perfil-info-valor" id="perfil-discord-id">—</div>
-                </div>
+              <main class="perfil-main">
+                <section class="perfil-panel">
+                  <p class="perfil-panel-label">MIEMBRO DE LA COMUNIDAD</p>
+                  <h3>Tu lugar en Forjadores</h3>
+                  <p>
+                    Explora lo que crea la comunidad, conoce a otros miembros
+                    y encuentra un espacio donde participar.
+                  </p>
+                </section>
 
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Miembro desde</div>
-                  <div class="perfil-info-valor" id="perfil-fecha">—</div>
-                </div>
+                <nav class="perfil-enlaces" aria-label="Espacios de la comunidad">
+                  <a href="nosotros.html" class="perfil-enlace">
+                    <strong>Comunidad</strong>
+                    <span>Conoce los equipos y sus miembros →</span>
+                  </a>
+                  <a href="galeria.html" class="perfil-enlace">
+                    <strong>Galería</strong>
+                    <span>Descubre momentos de nuestros eventos →</span>
+                  </a>
+                  <a href="colaboraciones.html" class="perfil-enlace">
+                    <strong>Colaboraciones</strong>
+                    <span>Conoce las comunidades aliadas →</span>
+                  </a>
+                </nav>
+              </main>
 
-                <div class="perfil-info-item">
-                  <div class="perfil-info-label">Comunidad</div>
-                  <div class="perfil-info-valor">Forjadores Hispanos VR</div>
-                </div>
-              </div>
+              <aside class="perfil-sidebar" aria-label="Detalles del perfil">
+                <section class="perfil-panel">
+                  <p class="perfil-panel-label">PERFIL</p>
+                  <h3>Datos del miembro</h3>
+                  <div class="perfil-info-grid">
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Discord ID</div>
+                      <div class="perfil-info-valor" id="perfil-discord-id">—</div>
+                    </div>
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Miembro desde</div>
+                      <div class="perfil-info-valor" id="perfil-fecha">—</div>
+                    </div>
+                    <div class="perfil-info-item">
+                      <div class="perfil-info-label">Comunidad</div>
+                      <div class="perfil-info-valor">Forjadores Hispanos VR</div>
+                    </div>
+                  </div>
+                </section>
+              </aside>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
