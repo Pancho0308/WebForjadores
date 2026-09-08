@@ -1,0 +1,24 @@
+# Evita que MultiViews interfiera con las URLs sin extensión.
+Options -MultiViews
+
+RewriteEngine On
+
+# Redirige las URLs solicitadas con .html a su versión limpia.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html(?:[?\s]) [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
+
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html(?:[?\s]) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
+
+# Sirve internamente el archivo .html cuando existe.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Página 404 predeterminada (inglés).
+ErrorDocument 404 /404.html
+
+# Las rutas /es usan la página 404 en español.
+<If "%{REQUEST_URI} =~ m#^/es(?:/|$)#">
+    ErrorDocument 404 /es/404.html
+</If>
