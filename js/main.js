@@ -24,7 +24,10 @@ function handleBrokenImg(img) {
   const alt = img.alt || img.getAttribute("alt") || "";
   img.src = buildPlaceholder(alt);
   if (!img.alt || img.alt.trim() === "")
-    img.alt = document.documentElement.lang === "es" ? "Imagen no disponible" : "Image unavailable";
+    img.alt =
+      document.documentElement.lang === "es"
+        ? "Imagen no disponible"
+        : "Image unavailable";
 }
 window.addEventListener(
   "error",
@@ -63,10 +66,14 @@ function aplicarTema(tema, guardar = true) {
     let etiqueta;
     if (esOscuro)
       etiqueta =
-        document.documentElement.lang === "es" ? "Activar modo claro" : "Enable light mode";
+        document.documentElement.lang === "es"
+          ? "Activar modo claro"
+          : "Enable light mode";
     else
       etiqueta =
-        document.documentElement.lang === "es" ? "Activar modo oscuro" : "Enable dark mode";
+        document.documentElement.lang === "es"
+          ? "Activar modo oscuro"
+          : "Enable dark mode";
     btn.setAttribute("aria-label", etiqueta);
     btn.title = btn.getAttribute("aria-label");
   }
@@ -83,10 +90,11 @@ function toggleTema() {
 }
 (function initTema() {
   const guardado = localStorage.getItem("tema");
-  const preferenciaSistema = window.matchMedia(
-    "(prefers-color-scheme: dark)",
+  const preferenciaSistema = window.matchMedia("(prefers-color-scheme: dark)");
+  aplicarTema(
+    guardado || (preferenciaSistema.matches ? "dark" : "light"),
+    false,
   );
-  aplicarTema(guardado || (preferenciaSistema.matches ? "dark" : "light"), false);
   preferenciaSistema.addEventListener("change", (event) => {
     if (!localStorage.getItem("tema"))
       aplicarTema(event.matches ? "dark" : "light", false);
@@ -555,8 +563,19 @@ const traducciones = {
     "footer-com": "Comunidad",
     "footer-sig": "Síguenos",
     "footer-donar": "Donativos",
-    "footer-copy1": "© 2026 Forjadores Hispanos VR · Creado por <span class=\"credit-name credit-noch\">Noch</span>",
-    "footer-copy2": "Actualizado por <span class=\"credit-name credit-horchata\">HorchataDuck</span> · <span class=\"credit-name credit-pancho\">Pancho0308</span> · <span class=\"credit-name credit-umbra\">Umbra</span> · <span class=\"credit-name credit-bbccris\">bbccris</span>",
+    "footer-copy1":
+      '© 2026 Forjadores Hispanos VR · Creado por <span class="credit-name credit-noch">Noch</span>',
+    "footer-copy2":
+      'Actualizado por <span class="credit-name credit-horchata">HorchataDuck</span> · <span class="credit-name credit-pancho">Pancho0308</span> · <span class="credit-name credit-umbra">Umbra</span> · <span class="credit-name credit-bbccris">bbccris</span>',
+
+    // 404
+    "error-meta-title": "Página no encontrada · Forjadores Hispanos VR",
+    "error-title": "Página no encontrada",
+    "error-desc":
+      'Parece que esta dimensión no existe... o fue <mark class="censurado">fragmentada</mark>.<br />La página que buscas no está disponible o fue movida.',
+    "error-back": "← Volver al inicio",
+    "error-links-title": "O ve directamente a:",
+    "error-gallery": "Galería",
   },
 
   en: {
@@ -617,8 +636,10 @@ const traducciones = {
     "footer-com": "Community",
     "footer-sig": "Follow us",
     "footer-donar": "Donations",
-    "footer-copy1": "© 2026 Forjadores Hispanos VR · Created by <span class=\"credit-name credit-noch\">Noch</span>",
-    "footer-copy2": "Updated by <span class=\"credit-name credit-horchata\">HorchataDuck</span> · <span class=\"credit-name credit-pancho\">Pancho0308</span> · <span class=\"credit-name credit-umbra\">Umbra</span> · <span class=\"credit-name credit-bbccris\">bbccris</span>",
+    "footer-copy1":
+      '© 2026 Forjadores Hispanos VR · Created by <span class="credit-name credit-noch">Noch</span>',
+    "footer-copy2":
+      'Updated by <span class="credit-name credit-horchata">HorchataDuck</span> · <span class="credit-name credit-pancho">Pancho0308</span> · <span class="credit-name credit-umbra">Umbra</span> · <span class="credit-name credit-bbccris">bbccris</span>',
 
     // EVENTOS — contenido real
     "evento1-tag": "Event 1",
@@ -646,7 +667,9 @@ const idiomaPreferido =
 
 if (idiomaPreferido !== idiomaActual) {
   const pagina = window.location.pathname.split("/").pop() || "index.html";
-  window.location.replace(idiomaPreferido === "es" ? `es/${pagina}` : `../${pagina}`);
+  window.location.replace(
+    idiomaPreferido === "es" ? `es/${pagina}` : `../${pagina}`,
+  );
 }
 
 function aplicarIdioma() {
@@ -674,7 +697,6 @@ function cambiarIdioma(idioma) {
 }
 
 document.addEventListener("DOMContentLoaded", aplicarIdioma);
-
 
 // ── FILTRO DE GALERÍA ──
 const galeriaTabs = document.querySelectorAll(".galeria-tab");
@@ -759,7 +781,9 @@ if (galeriaTabs.length > 0) {
     const a = document.querySelector("#fv-mensaje-bloque .fv-mensaje-alerta");
     if (a)
       a.textContent =
-        idiomaActual === "es" ? "✓ MENSAJE DESENCRIPTADO" : "✓ MESSAGE DECRYPTED";
+        idiomaActual === "es"
+          ? "✓ MENSAJE DESENCRIPTADO"
+          : "✓ MESSAGE DECRYPTED";
     return;
   }
   const alerta = document.querySelector(
@@ -821,7 +845,10 @@ if (galeriaTabs.length > 0) {
     }
     block.classList.add("decrypt-done");
     if (alerta)
-      alerta.textContent = idiomaActual === "es" ? "⚠ DESENCRIPTACIÓN PARCIAL — 4 BLOQUES CORRUPTOS" : "⚠ PARTIAL DECRYPTION — 4 CORRUPTED BLOCKS";
+      alerta.textContent =
+        idiomaActual === "es"
+          ? "⚠ DESENCRIPTACIÓN PARCIAL — 4 BLOQUES CORRUPTOS"
+          : "⚠ PARTIAL DECRYPTION — 4 CORRUPTED BLOCKS";
   }
   // solo 1 vez al cargar la página
   if (document.readyState === "loading")
