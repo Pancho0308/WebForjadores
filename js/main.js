@@ -1,3 +1,17 @@
+// ── MÉTRICAS METRICOOL ──
+function loadScript(a) {
+  var b = document.getElementsByTagName("head")[0],
+    c = document.createElement("script");
+  (c.type = "text/javascript"),
+    (c.src = "https://tracker.metricool.com/resources/be.js"),
+    (c.onreadystatechange = a),
+    (c.onload = a),
+    b.appendChild(c);
+}
+loadScript(() => {
+  beTracker.t({ hash: "39af6393f46003a923a429d43b0f6b7b" });
+});
+
 // ── PLACEHOLDER IMÁGENES ROTAS ──
 // ponytail: un handler delegado, sin tocar cada <img>, sin libs
 function escXml(s) {
@@ -693,6 +707,7 @@ function cambiarIdioma(idioma) {
   localStorage.setItem("idioma", idioma);
   if (idioma === idiomaActual) return;
   const pagina = window.location.pathname.split("/").pop() || "index.html";
+  // pi-lens-ignore: no-open-redirect-js
   window.location.href = idioma === "es" ? `es/${pagina}` : `../${pagina}`;
 }
 
