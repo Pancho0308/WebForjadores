@@ -3,8 +3,21 @@
 const SUPABASE_URL  = 'https://nnvoprqqqfwoglqmnbps.supabase.co';
 const SUPABASE_KEY  = 'sb_publishable_V8SARswtGsbtGZc9Fs3sLg_SCtjufXc';
 
-const { createClient } = supabase;
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+let sb;
+
+async function cargarSupabase() {
+  if (!window.supabase) {
+    await new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      script.onload = resolve;
+      script.onerror = () => reject(new Error('No se pudo cargar Supabase'));
+      document.head.appendChild(script);
+    });
+  }
+
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+}
 
 // ── LOGIN CON DISCORD ──
 async function loginConDiscord() {
@@ -20,7 +33,7 @@ async function loginConDiscord() {
 // ── LOGOUT ──
 async function logout() {
   await sb.auth.signOut();
-  window.location.href = 'index.html';
+  window.location.assign('index.html');
 }
 
 // ── CARGAR PERFIL ──
@@ -73,31 +86,39 @@ async function guardarPerfil(user, meta) {
 }
 
 // ── ACTUALIZAR NAVBAR según sesión ──
-async function actualizarNavbarConSesion() {
-  const { data: { session } } = await sb.auth.getSession();
-  const btnTema = document.getElementById('btn-tema');
-  if (!btnTema) return;
+function actualizarNavbarConSesion(session) {
+  const navLogin = document.getElementById('nav-login');
+  if (!navLogin || !session) return;
 
-  if (session) {
-    const meta = session.user.user_metadata;
-    const avatar = meta.avatar_url;
-    const nombre = meta.full_name || meta.name || (document.documentElement.lang === 'es' ? 'Perfil' : 'Profile');
+  const meta = session.user.user_metadata;
+  const avatar = meta.avatar_url;
+  const nombre = meta.full_name || meta.name || (document.documentElement.lang === 'es' ? 'Perfil' : 'Profile');
 
-    // Inserta el avatar en el navbar
-    const navItem = document.createElement('li');
-    navItem.className = 'nav-item';
-    navItem.innerHTML = `
-      <a href="perfil.html" class="nav-perfil-btn">
-        <img src="${avatar}" alt="${nombre}" class="nav-avatar">
-        <span>${nombre.split(' ')[0]}</span>
-      </a>
-    `;
-    btnTema.closest('li').insertAdjacentElement('afterend', navItem);
-  }
+  navLogin.classList.remove('nav-login-btn');
+  navLogin.removeAttribute('data-i18n');
+  const img = new Image();
+  img.src = avatar;
+  img.alt = nombre;
+  img.className = 'nav-avatar';
+  const span = document.createElement('span');
+  span.textContent = nombre.split(' ')[0];
+  navLogin.replaceChildren(img, span);
 }
 
 // ── EVENTOS ──
 document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    await cargarSupabase();
+  } catch (error) {
+    console.error('Error inicializando Supabase:', error);
+    return;
+  }
+
+  // Escucha la sesión antes de cargar el perfil para evitar mostrar el login
+  sb.auth.onAuthStateChange((_event, session) => {
+    actualizarNavbarConSesion(session);
+  });
+
   // Botón login
   const btnLogin = document.getElementById('btn-login-discord');
   if (btnLogin) btnLogin.addEventListener('click', loginConDiscord);
@@ -111,6 +132,4 @@ document.addEventListener('DOMContentLoaded', async function() {
     await cargarPerfil();
   }
 
-  // Actualiza navbar en todas las páginas
-  await actualizarNavbarConSesion();
 });

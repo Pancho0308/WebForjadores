@@ -12,8 +12,8 @@ function buildPlaceholder(alt) {
   const hasAlt = !!raw;
   // si hay alt: línea 1 = alt, línea 2 = "imagen no disponible"; si no: solo "Imagen no disponible"
   const textBlock = hasAlt
-    ? `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">${escXml(raw)}</tspan><tspan x="200" dy="18" font-size="12" fill="#5a6d7e">imagen no disponible</tspan>`
-    : `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">Imagen no disponible</tspan>`;
+    ? `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">${escXml(raw)}</tspan><tspan x="200" dy="18" font-size="12" fill="#5a6d7e">${document.documentElement.lang === "es" ? "imagen no disponible" : "image unavailable"}</tspan>`
+    : `<tspan x="200" dy="0" font-size="15" font-weight="600" fill="#3d4f5e">${document.documentElement.lang === "es" ? "Imagen no disponible" : "Image unavailable"}</tspan>`;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#e8edf2"/><path d="M120 190 L175 115 L225 165 L260 135 L285 190 Z" fill="#c9d6e3"/><circle cx="178" cy="92" r="20" fill="#c9d6e3"/><text x="200" y="228" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" fill="#3d4f5e">${textBlock}</text></svg>`;
   return "data:image/svg+xml," + encodeURIComponent(svg);
 }
@@ -23,7 +23,8 @@ function handleBrokenImg(img) {
   img.classList.add("img-broken");
   const alt = img.alt || img.getAttribute("alt") || "";
   img.src = buildPlaceholder(alt);
-  if (!img.alt || img.alt.trim() === "") img.alt = "Imagen no disponible";
+  if (!img.alt || img.alt.trim() === "")
+    img.alt = document.documentElement.lang === "es" ? "Imagen no disponible" : "Image unavailable";
 }
 window.addEventListener(
   "error",
@@ -59,10 +60,14 @@ function aplicarTema(tema, guardar = true) {
   const btn = document.getElementById("btn-tema");
   if (btn) {
     btn.textContent = esOscuro ? "☀" : "☾";
-    btn.setAttribute(
-      "aria-label",
-      esOscuro ? "Activar modo claro" : "Activar modo oscuro",
-    );
+    let etiqueta;
+    if (esOscuro)
+      etiqueta =
+        document.documentElement.lang === "es" ? "Activar modo claro" : "Enable light mode";
+    else
+      etiqueta =
+        document.documentElement.lang === "es" ? "Activar modo oscuro" : "Enable dark mode";
+    btn.setAttribute("aria-label", etiqueta);
     btn.title = btn.getAttribute("aria-label");
   }
 }
@@ -502,6 +507,7 @@ const traducciones = {
     "nav-redes": "Redes",
     "nav-colaboraciones": "Colaboraciones",
     "nav-noved": "Novedades Squad",
+    "nav-login": "Iniciar sesión",
     "nav-donar":
       'Donar <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
@@ -563,6 +569,7 @@ const traducciones = {
     "nav-redes": "Social Media",
     "nav-colaboraciones": "Collaborations",
     "nav-noved": "Squad News",
+    "nav-login": "Log in",
     "nav-donar":
       'Donate <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span>',
 
@@ -706,10 +713,17 @@ if (galeriaTabs.length > 0) {
       // Actualiza el contador
       const count = document.getElementById("galeria-count");
       if (count) {
-        count.textContent =
-          categoria === "todas"
-            ? "Mostrando todas las fotos"
-            : "Mostrando " + visibles + " foto" + (visibles === 1 ? "" : "s");
+        if (idiomaActual === "es") {
+          count.textContent =
+            categoria === "todas"
+              ? "Mostrando todas las fotos"
+              : "Mostrando " + visibles + " foto" + (visibles === 1 ? "" : "s");
+        } else {
+          count.textContent =
+            categoria === "todas"
+              ? "Showing all photos"
+              : "Showing " + visibles + " photo" + (visibles === 1 ? "" : "s");
+        }
       }
     });
   });
@@ -743,7 +757,9 @@ if (galeriaTabs.length > 0) {
     });
     block.classList.add("decrypt-done");
     const a = document.querySelector("#fv-mensaje-bloque .fv-mensaje-alerta");
-    if (a) a.textContent = "✓ MENSAJE DESENCRIPTADO";
+    if (a)
+      a.textContent =
+        idiomaActual === "es" ? "✓ MENSAJE DESENCRIPTADO" : "✓ MESSAGE DECRYPTED";
     return;
   }
   const alerta = document.querySelector(
