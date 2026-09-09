@@ -3833,7 +3833,14 @@ body::after {
   font-size: 14px;
   color: var(--texto-suave);
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
+}
+
+.perfil-login-aviso {
+  margin: 0 0 24px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--texto-suave);
 }
 
 .btn-discord {
@@ -5033,4 +5040,90 @@ body::after {
 :where([class$="-card"], [class*="-card "]) {
   backdrop-filter: blur(10px) saturate(1.08);
   -webkit-backdrop-filter: blur(10px) saturate(1.08);
+}
+
+/* ── CONSENTIMIENTO DE COOKIES ── */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 1100;
+  width: min(960px, calc(100% - 32px));
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--texto);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+  backdrop-filter: blur(16px) saturate(1.08);
+  -webkit-backdrop-filter: blur(16px) saturate(1.08);
+  transform: translateX(-50%);
+}
+
+.cookie-banner__texto strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cookie-banner__texto p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cookie-banner__acciones {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.cookie-banner button {
+  padding: 9px 15px;
+  color: var(--texto);
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cookie-banner button:hover {
+  border-color: var(--azul-principal);
+}
+
+.cookie-banner button:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.cookie-banner .cookie-banner__aceptar {
+  color: #fff;
+  background: var(--azul-accion);
+  border-color: var(--azul-accion);
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    bottom: 8px;
+    width: calc(100% - 16px);
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .cookie-banner__acciones {
+    justify-content: flex-end;
+  }
+
+  .cookie-banner button {
+    flex: 1;
+  }
 }
