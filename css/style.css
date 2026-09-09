@@ -1517,6 +1517,11 @@ body::after {
     width: 50%;
   }
 }
+@media (max-width: 575.98px) {
+  .fv-hero-titulo {
+    font-size: clamp(40px, 13vw, 52px);
+  }
+}
 
 /* Foto derecha del hero */
 .fv-hero-foto {
@@ -1974,6 +1979,23 @@ body::after {
   min-height: 280px; /* ← altura mínima por si acaso */
 }
 
+@media (max-width: 575.98px) {
+  .discord-card {
+    flex-direction: column;
+  }
+
+  .discord-izq {
+    min-width: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .discord-der iframe {
+    width: 100%;
+    min-height: 320px;
+    border-radius: 0 0 12px 12px;
+  }
+}
 .discord-canales-titulo {
   font-size: 12px;
   font-weight: 600;
@@ -3570,6 +3592,42 @@ body::after {
   color: var(--texto-suave);
   margin: 0;
   line-height: 1.6;
+}
+
+@media (max-width: 575.98px) {
+  .galeria-tabs-wrap {
+    width: calc(100% - 24px);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .galeria-tab {
+    padding-inline: 12px;
+  }
+
+  .galeria-mosaico {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 220px repeat(2, 140px);
+  }
+
+  .gal-foto.gal-foto-grande {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .galeria-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gal-foto-small {
+    height: 140px;
+  }
+
+  .galeria-pie {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 /* ── PÁGINA 404 ── */
