@@ -52,8 +52,16 @@
     --rayo-agua: rgba(108, 224, 229, 0.1);
     --burbuja: rgba(113, 221, 228, 0.22);
     --ambiente-oceano:
-      radial-gradient(circle at 72% 8%, rgba(40, 157, 173, 0.18), transparent 30%),
-      radial-gradient(circle at 12% 68%, rgba(18, 93, 128, 0.2), transparent 36%),
+      radial-gradient(
+        circle at 72% 8%,
+        rgba(40, 157, 173, 0.18),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 12% 68%,
+        rgba(18, 93, 128, 0.2),
+        transparent 36%
+      ),
       linear-gradient(165deg, #06121d 0%, #072b3b 50%, #031019 100%);
   }
 }
@@ -85,21 +93,66 @@ body::after {
 body::before {
   inset: -18% -12%;
   background:
-    linear-gradient(112deg, transparent 28%, var(--rayo-agua) 38%, transparent 48%),
-    linear-gradient(104deg, transparent 52%, var(--rayo-agua) 61%, transparent 70%);
+    linear-gradient(
+      112deg,
+      transparent 28%,
+      var(--rayo-agua) 38%,
+      transparent 48%
+    ),
+    linear-gradient(
+      104deg,
+      transparent 52%,
+      var(--rayo-agua) 61%,
+      transparent 70%
+    );
   transform-origin: top center;
   animation: rayos-oceano 14s ease-in-out infinite alternate;
 }
 
 body::after {
   background:
-    radial-gradient(circle at 8% 88%, transparent 0 5px, var(--burbuja) 6px 7px, transparent 8px),
-    radial-gradient(circle at 18% 42%, transparent 0 3px, var(--burbuja) 4px 5px, transparent 6px),
-    radial-gradient(circle at 34% 76%, transparent 0 7px, var(--burbuja) 8px 9px, transparent 10px),
-    radial-gradient(circle at 56% 24%, transparent 0 4px, var(--burbuja) 5px 6px, transparent 7px),
-    radial-gradient(circle at 72% 68%, transparent 0 6px, var(--burbuja) 7px 8px, transparent 9px),
-    radial-gradient(circle at 88% 36%, transparent 0 3px, var(--burbuja) 4px 5px, transparent 6px),
-    radial-gradient(circle at 94% 84%, transparent 0 8px, var(--burbuja) 9px 10px, transparent 11px);
+    radial-gradient(
+      circle at 8% 88%,
+      transparent 0 5px,
+      var(--burbuja) 6px 7px,
+      transparent 8px
+    ),
+    radial-gradient(
+      circle at 18% 42%,
+      transparent 0 3px,
+      var(--burbuja) 4px 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 34% 76%,
+      transparent 0 7px,
+      var(--burbuja) 8px 9px,
+      transparent 10px
+    ),
+    radial-gradient(
+      circle at 56% 24%,
+      transparent 0 4px,
+      var(--burbuja) 5px 6px,
+      transparent 7px
+    ),
+    radial-gradient(
+      circle at 72% 68%,
+      transparent 0 6px,
+      var(--burbuja) 7px 8px,
+      transparent 9px
+    ),
+    radial-gradient(
+      circle at 88% 36%,
+      transparent 0 3px,
+      var(--burbuja) 4px 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 94% 84%,
+      transparent 0 8px,
+      var(--burbuja) 9px 10px,
+      transparent 11px
+    );
   animation: burbujas-oceano 18s ease-in-out infinite alternate;
 }
 
@@ -154,7 +207,7 @@ body::after {
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(72% - 32px);
+  width: min(1320px, calc(100% - 32px));
   z-index: 1000;
   border-radius: 50px;
   transition: all 0.4s ease;
@@ -168,6 +221,153 @@ body::after {
   box-shadow:
     0 8px 28px rgba(0, 11, 20, 0.3),
     inset 0 1px 0 rgba(125, 220, 229, 0.12);
+}
+
+#navbar-principal > .container {
+  max-width: none;
+  padding-inline: 0;
+}
+
+#navbar-principal .navbar-toggler {
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  flex-shrink: 0;
+  color: #fff;
+  border-color: rgba(125, 220, 229, 0.4);
+  border-radius: 12px;
+}
+
+#navbar-principal .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+#navbar-principal .navbar-toggler:focus-visible {
+  outline: 3px solid var(--azul-claro);
+  outline-offset: 3px;
+}
+
+#navbar-principal .navbar-toggler-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#navbar-principal .navbar-collapse,
+#navbar-principal .navbar-actions,
+#navbar-principal .nav-perfil-btn {
+  min-width: 0;
+}
+
+#navbar-principal .navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+#navbar-principal .nav-link,
+#navbar-principal .navbar-actions > * {
+  white-space: nowrap;
+}
+
+#navbar-principal .nav-perfil-btn {
+  max-width: 160px;
+}
+
+#navbar-principal .nav-perfil-btn span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#navbar-principal .nav-avatar {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1199.98px) {
+  #navbar-principal,
+  #navbar-principal.scrolled {
+    width: calc(100% - 24px);
+    padding: 10px 12px;
+    border-radius: 22px;
+    background: rgba(3, 28, 40, 0.96);
+  }
+
+  #navbar-principal .navbar-brand {
+    min-width: 0;
+    max-width: calc(100% - 56px);
+    margin-right: 12px;
+  }
+
+  #menu-principal {
+    max-height: calc(100dvh - 104px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  #navbar-principal .navbar-nav {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(125, 220, 229, 0.2);
+  }
+
+  #navbar-principal .navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  #navbar-principal .navbar-actions {
+    flex-wrap: wrap;
+    margin: 12px 0 0;
+    padding: 12px 0 4px;
+    border-top: 1px solid rgba(125, 220, 229, 0.2);
+  }
+
+  #navbar-principal .navbar-actions > * {
+    min-height: 44px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  #navbar-principal .btn-tema {
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  #navbar-principal .btn-idioma {
+    flex: 1 1 calc(100% - 52px);
+    min-width: 0;
+  }
+
+  #navbar-principal .nav-perfil-btn,
+  #navbar-principal .btn-donar {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #navbar-principal .logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  #navbar-principal .nav-nombre {
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  #navbar-principal .nav-sub {
+    display: none;
+  }
 }
 
 .logo-img {
@@ -309,7 +509,11 @@ body::after {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 72% 18%, rgba(71, 211, 218, 0.15), transparent 32%),
+    radial-gradient(
+      circle at 72% 18%,
+      rgba(71, 211, 218, 0.15),
+      transparent 32%
+    ),
     linear-gradient(
       to top,
       rgba(2, 20, 32, 0.94) 0%,
@@ -631,7 +835,11 @@ body::after {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 88% 22%, rgba(76, 205, 215, 0.12), transparent 30%),
+    radial-gradient(
+      circle at 88% 22%,
+      rgba(76, 205, 215, 0.12),
+      transparent 30%
+    ),
     linear-gradient(150deg, #062b3a 0%, #031924 100%);
   padding: 64px 0 32px;
 }
@@ -759,11 +967,21 @@ body::after {
   font-weight: 600;
 }
 
-.credit-horchata { color: #7dd3fc; }
-.credit-noch { color: #f472b6; }
-.credit-pancho { color: #2dd4bf; }
-.credit-umbra { color: #c4b5fd; }
-.credit-bbccris { color: #f0cf8a; }
+.credit-horchata {
+  color: #7dd3fc;
+}
+.credit-noch {
+  color: #f472b6;
+}
+.credit-pancho {
+  color: #2dd4bf;
+}
+.credit-umbra {
+  color: #c4b5fd;
+}
+.credit-bbccris {
+  color: #f0cf8a;
+}
 
 .hero-slide {
   position: absolute;
@@ -3691,7 +3909,9 @@ body::after {
   border: 1px solid rgba(102, 192, 244, 0.16);
   border-radius: 5px;
   text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .perfil-enlace:hover {
@@ -3790,7 +4010,9 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;
   padding: 4px 8px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-perfil-btn:hover {
@@ -4649,19 +4871,20 @@ body::after {
   min-height: 160px;
 }
 
-[data-theme="dark"] :is(
-  .rama-lider,
-  .tl-anio.filled,
-  .embed-tab.active,
-  .don-comp-check,
-  .galeria-tab.active,
-  .red-btn:hover,
-  .dest-link:hover,
-  .socio-link:hover,
-  .miembro-btn:hover,
-  .btn-mundo:hover,
-  .fv-arrow:hover
-) {
+[data-theme="dark"]
+  :is(
+    .rama-lider,
+    .tl-anio.filled,
+    .embed-tab.active,
+    .don-comp-check,
+    .galeria-tab.active,
+    .red-btn:hover,
+    .dest-link:hover,
+    .socio-link:hover,
+    .miembro-btn:hover,
+    .btn-mundo:hover,
+    .fv-arrow:hover
+  ) {
   background: var(--azul-accion);
   border-color: var(--azul-accion);
   color: #fff;

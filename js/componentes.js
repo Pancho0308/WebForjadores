@@ -11,7 +11,7 @@ function cargarFavicon() {
 // ── NAVBAR ──
 function cargarNavbar() {
   const navbarHTML = `
-    <nav class="navbar navbar-expand-lg" id="navbar-principal">
+    <nav class="navbar navbar-expand-xl" id="navbar-principal" data-bs-theme="dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
           <img src="${baseRuta}img/logo.png" alt="Logo Forjadores" width="42" height="42" class="logo-img">
@@ -20,29 +20,27 @@ function cargarNavbar() {
             <div class="nav-sub" data-i18n="nav-sub">Comunidad VRChat hispanohablante</div>
           </div>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Menú / Menu">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
         <div class="collapse navbar-collapse" id="menu-principal">
-          <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <ul class="navbar-nav ms-auto align-items-xl-center gap-2">
             <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav-inicio">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="nosotros.html" data-i18n="nav-nosotros">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link" href="que-es-forjaversario.html" data-i18n="nav-forjaversarios">Forjaversarios</a></li>
             <li class="nav-item"><a class="nav-link" href="redes.html" data-i18n="nav-redes">Redes</a></li>
             <li class="nav-item"><a class="nav-link" href="colaboraciones.html" data-i18n="nav-colaboraciones">Colaboraciones</a></li>
             <li class="nav-item"><a class="nav-link" href="squad-forever-fest.html" data-i18n="nav-noved">Noved Squad</a></li>
-            <li class="nav-item">
-              <button class="btn-tema" id="btn-tema" onclick="toggleTema()" aria-label="Toggle dark mode">☾</button>
-            </li>
-            <li class="nav-item">
-              <select class="btn-idioma" id="selector-idioma" aria-label="Language" onchange="cambiarIdioma(this.value)">
-                <option value="es">🇪🇸 Español</option>
-                <option value="en">🇺🇸 English</option>
-              </select>
-            </li>
-            <li class="nav-item"><a id="nav-login" class="nav-perfil-btn nav-login-btn" href="perfil.html" data-i18n="nav-login">Iniciar sesión</a></li>
-            <li class="nav-item"><a class="btn btn-donar" href="donativo.html" data-i18n="nav-donar">Donar <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span></a></li>
           </ul>
+          <div class="navbar-actions">
+            <button class="btn-tema" id="btn-tema" onclick="toggleTema()" aria-label="Toggle dark mode">☾</button>
+            <select class="btn-idioma" id="selector-idioma" aria-label="Language" onchange="cambiarIdioma(this.value)">
+              <option value="es">🇪🇸 Español</option>
+              <option value="en">🇺🇸 English</option>
+            </select>
+            <a id="nav-login" class="nav-perfil-btn nav-login-btn" href="perfil.html" data-i18n="nav-login">Iniciar sesión</a>
+            <a class="btn btn-donar" href="donativo.html" data-i18n="nav-donar">Donar <span class="donar-heart" aria-hidden="true"><span class="heart-outline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span><span class="heart-filled"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 21s-6.7-4.2-8.5-8.2C1.9 9.1 3.1 4.8 7.2 4.8c1.9 0 3.1 1 4.8 2.5 1.7-1.5 2.9-2.5 4.8-2.5 4.1 0 5.3 4.3 3.7 8C18.7 16.8 12 21 12 21z"/></svg></span></span></a>
+          </div>
         </div>
       </div>
     </nav>
