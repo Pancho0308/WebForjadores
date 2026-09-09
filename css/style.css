@@ -1294,18 +1294,23 @@ body::after {
   color: #ffffff;
 }
 
+@media (min-width: 992px) {
+  .fv-hero-contenido :is(.col-lg-7, .col-lg-5) {
+    width: 50%;
+  }
+}
+
 /* Foto derecha del hero */
 .fv-hero-foto {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(142, 207, 238, 0.15);
+  max-width: 560px;
+  margin-inline: auto;
 }
 
 .fv-hero-foto img {
   width: 100%;
-  height: 400px;
-  object-fit: cover;
-  display: flex;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* ── EDICIONES ANTERIORES ── */
