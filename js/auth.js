@@ -1,5 +1,4 @@
 // ── CONFIGURACIÓN SUPABASE ──
-// Reemplaza estos valores con los tuyos de supabase.com/dashboard
 const SUPABASE_URL = "https://nnvoprqqqfwoglqmnbps.supabase.co";
 const SUPABASE_KEY = "sb_publishable_V8SARswtGsbtGZc9Fs3sLg_SCtjufXc";
 
