@@ -1,16 +1,87 @@
-// ── MÉTRICAS METRICOOL ──
-function loadScript(a) {
-  var b = document.getElementsByTagName("head")[0],
-    c = document.createElement("script");
-  (c.type = "text/javascript"),
-    (c.src = "https://tracker.metricool.com/resources/be.js"),
-    (c.onreadystatechange = a),
-    (c.onload = a),
-    b.appendChild(c);
+// ── CONSENTIMIENTO DE MÉTRICAS ──
+const METRICOOL_CONSENT_KEY = "metricool-consent";
+
+function loadMetricool() {
+  if (document.querySelector('script[data-metricool]')) return;
+
+  const script = document.createElement("script");
+  // pi-lens-ignore: hardcoded-url-js
+  script.src = "https://tracker.metricool.com/resources/be.js";
+  script.dataset.metricool = "";
+  script.onload = () => {
+    if (window.beTracker)
+      window.beTracker.t({ hash: "39af6393f46003a923a429d43b0f6b7b" });
+  };
+  document.head.append(script);
 }
-loadScript(() => {
-  beTracker.t({ hash: "39af6393f46003a923a429d43b0f6b7b" });
-});
+
+function guardarConsentimientoMetricool(eleccion) {
+  try {
+    localStorage.setItem(METRICOOL_CONSENT_KEY, eleccion);
+  } catch (_) {
+    // Si el almacenamiento está bloqueado, la elección dura esta página.
+  }
+  document.querySelector("#cookie-banner")?.remove();
+  if (eleccion === "accepted") loadMetricool();
+}
+
+function iniciarConsentimientoMetricool() {
+  let eleccion;
+  try {
+    eleccion = localStorage.getItem(METRICOOL_CONSENT_KEY);
+  } catch (_) {
+    // Sin almacenamiento, volvemos a solicitar la elección en cada página.
+  }
+
+  if (eleccion === "accepted") return loadMetricool();
+  if (eleccion === "rejected") return;
+
+  const es = document.documentElement.lang.startsWith("es");
+  const banner = document.createElement("section");
+  banner.id = "cookie-banner";
+  banner.className = "cookie-banner";
+  banner.setAttribute("role", "region");
+  banner.setAttribute(
+    "aria-label",
+    es ? "Preferencias de cookies" : "Cookie preferences",
+  );
+  const texto = document.createElement("div");
+  texto.className = "cookie-banner__texto";
+  const titulo = document.createElement("strong");
+  titulo.textContent = es ? "Cookies de métricas" : "Analytics cookies";
+  const descripcion = document.createElement("p");
+  descripcion.textContent = es
+    ? "Usamos Metricool para medir visitas y mejorar la web. Solo se activará si aceptas."
+    : "We use Metricool to measure visits and improve the website. It will only run if you accept.";
+
+  const acciones = document.createElement("div");
+  acciones.className = "cookie-banner__acciones";
+  const rechazar = document.createElement("button");
+  rechazar.type = "button";
+  rechazar.dataset.cookieChoice = "rejected";
+  rechazar.textContent = es ? "Rechazar" : "Reject";
+  const aceptar = document.createElement("button");
+  aceptar.type = "button";
+  aceptar.className = "cookie-banner__aceptar";
+  aceptar.dataset.cookieChoice = "accepted";
+  aceptar.textContent = es ? "Aceptar" : "Accept";
+
+  [rechazar, aceptar].forEach((button) => {
+    button.addEventListener("click", () =>
+      guardarConsentimientoMetricool(button.dataset.cookieChoice),
+    );
+  });
+  texto.append(titulo, descripcion);
+  acciones.append(rechazar, aceptar);
+  banner.append(texto, acciones);
+  document.body.append(banner);
+}
+
+if (document.readyState === "loading")
+  document.addEventListener("DOMContentLoaded", iniciarConsentimientoMetricool, {
+    once: true,
+  });
+else iniciarConsentimientoMetricool();
 
 // ── PLACEHOLDER IMÁGENES ROTAS ──
 // ponytail: un handler delegado, sin tocar cada <img>, sin libs
