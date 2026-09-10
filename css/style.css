@@ -3843,15 +3843,20 @@ body::after {
   color: var(--texto-suave);
 }
 
-.btn-discord {
+.perfil-login-botones {
+  display: grid;
+  gap: 10px;
+}
+
+.btn-oauth {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: 100%;
   font-size: 14px;
   padding: 12px 24px;
-  background: #5865f2;
-  color: #ffffff;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -3859,8 +3864,29 @@ body::after {
   font-family: inherit;
 }
 
+.btn-discord {
+  background: #5865f2;
+  color: #ffffff;
+}
+
 .btn-discord:hover {
   background: #4752c4;
+}
+
+.btn-google {
+  background: #ffffff;
+  border-color: #dadce0;
+  color: #3c4043;
+}
+
+.btn-google:hover {
+  background: #f8f9fa;
+}
+
+.btn-google-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
 
 /* Perfil comunitario */
@@ -4144,6 +4170,13 @@ body::after {
   height: 26px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.nav-auth-provider {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 8px;
+  text-transform: uppercase;
 }
 
 /* ── SQUAD FOREVER FEST ── */

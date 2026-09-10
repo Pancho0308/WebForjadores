@@ -1,6 +1,7 @@
 # Local tooling
 .pi/
 
+tests/
 # OS/editor files
 .DS_Store
 Thumbs.db
