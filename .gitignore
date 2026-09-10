@@ -6,3 +6,5 @@ tests/
 .DS_Store
 Thumbs.db
 *.swp
+# Local Pi runtime state
+.atl/
