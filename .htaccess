@@ -1,6 +1,13 @@
 # Evita que MultiViews interfiera con las URLs sin extensión.
 Options -MultiViews
 
+# Revalida HTML, CSS y JavaScript para evitar versiones antiguas en cachés/CDN.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|html)$">
+        Header always set Cache-Control "no-cache, max-age=0, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
 RewriteEngine On
 
 # Redirige las URLs solicitadas con .html a su versión limpia.
