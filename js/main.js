@@ -2,7 +2,7 @@
 const METRICOOL_CONSENT_KEY = "metricool-consent";
 
 function loadMetricool() {
-  if (document.querySelector('script[data-metricool]')) return;
+  if (document.querySelector("script[data-metricool]")) return;
 
   const script = document.createElement("script");
   // pi-lens-ignore: hardcoded-url-js
@@ -78,9 +78,13 @@ function iniciarConsentimientoMetricool() {
 }
 
 if (document.readyState === "loading")
-  document.addEventListener("DOMContentLoaded", iniciarConsentimientoMetricool, {
-    once: true,
-  });
+  document.addEventListener(
+    "DOMContentLoaded",
+    iniciarConsentimientoMetricool,
+    {
+      once: true,
+    },
+  );
 else iniciarConsentimientoMetricool();
 
 // ── PLACEHOLDER IMÁGENES ROTAS ──
@@ -810,14 +814,21 @@ if (galeriaTabs.length > 0) {
         }
       });
 
-      // Placeholder si categoría vacía — oculta grids para que no deje hueco debajo
+      // Oculta cada bloque si no contiene fotos visibles.
       const vacia = document.getElementById("galeria-vacia");
       const galMosaico = document.getElementById("galeria-mosaico");
       const galGrid = document.getElementById("galeria-grid");
       const esVacia = visibles === 0;
       if (vacia) vacia.hidden = !esVacia;
-      if (galMosaico) galMosaico.hidden = esVacia;
-      if (galGrid) galGrid.hidden = esVacia;
+      if (galMosaico) {
+        galMosaico.hidden = !galMosaico.querySelector(
+          ".galeria-item:not(.oculto)",
+        );
+        galMosaico.classList.toggle("filtrada", categoria !== "todas");
+      }
+      if (galGrid) {
+        galGrid.hidden = !galGrid.querySelector(".galeria-item:not(.oculto)");
+      }
       // Actualiza el contador
       const count = document.getElementById("galeria-count");
       if (count) {
