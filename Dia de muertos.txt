@@ -1,0 +1,85 @@
+# 📋 Día de Muertos Events  Task Overview
+> This is a List of things needed for the https://discord.com/channels/1527397504428146848/1532453806242271242 to work, I added some people on each to get your attention on those, if you can read the events and ask any question or give any feedback would be amazing, some stuff is already designed and done but I worte it anyways as we are focusing on making sure we have all done before the event is to close.
+
+## 🎬 Production <@416402784921845763> <@331437235184336898> 
+- Finalize the November 1–8 event schedule.
+- Assign leads, hosts, guides, and performers.
+- Prepare scripts, cues, timing, and fallback plans.
+- Organize registrations for dancers, storytellers, and participants.
+- Coordinate Opening/Closing Ceremonies and community photo.
+- Decide which activities remain available outside event hours.
+
+## 🧊 3D / World <@278538389366636554> <@233038944046940161> 
+- Pyramid candle introduction and illuminated path.
+- Kiosk/ofrenda with progression stages.
+- Cempasúchil bridge for the Closing Ceremony.
+- Collectibles and interactive ofrenda objects.
+- Alebrije NPCs where needed.
+- Performer portals.
+- Secret/gallery milestone areas.
+- Moving bridges/platforms if used.
+- Optional Catrina/Catrín avatars or wearable items.
+
+## ⚙️ Technical / Udon <@278538389366636554> <@169566317169475587> 
+- Candle pickup, placement, and player representation.
+- Opening world reveal / teleport.
+- Global curated + local instance messages.
+- Persistence where possible.
+- **[Flame of the Souls](https://discord.com/channels/1527397504428146848/1548789469451133128)** milestone system.
+- Decide global, instance, or personal progression.
+- Connect activities to milestone points.
+- Collectible tracking and anti-farming.
+- Quiz system and ofrenda placement puzzle.
+- NPC dialogue, movement, and triggers.
+- Interactive/floating lore.
+- Event location indicators.
+- Closing effects linked to milestones.
+- Research global player counter.
+- Host controls, resets, and triggers.
+
+## 🎨 Art / VFX <@214277233387372545> <@856339102692933683> 
+- Día de Muertos decoration and visual identity.
+- Cempasúchil, candles, papel picado, signage, altar assets.
+- Kiosk progression visuals.
+- Portal and collectible effects.
+- Quiz/lore UI.
+- Multilingual information panels.
+- Petals, particles, lighting, fireworks, final-show effects.
+- Concept art/gallery content.
+- Promotional graphics.
+
+## 🎵 Music / Audio
+- Dance event music.
+- Procession music.
+- Opening/Closing Ceremony tracks.
+- ~5-minute Closing Show soundtrack.
+- Ambient audio for lore areas.
+- Audio cues for puzzles, collectibles, and milestones.
+- Sync music with lighting/VFX.
+- Confirm music usage permissions.
+
+## 📚 Cultural / Writing <@214277233387372545> <@416402784921845763> 
+- Review cultural accuracy.
+- Write tour scripts and NPC dialogue.
+- Prepare collectible lore.
+- Create quiz questions and explanations.
+- Review ofrenda items and meanings.
+- Prepare storytelling/history material.
+- Translate key content to EN / ES / JP where possible.
+
+## 🤝 Communities / Networking <@416402784921845763> 
+- Invite dance groups, musicians, storytellers, and guides.
+- Coordinate Forjadores, El Alba, PJKT, and partners.
+- Define responsibilities and contacts.
+- Collect curated remembrance messages.
+- Organize cross-community promotion.
+- Prepare announcements, schedules, and registration posts.
+- Coordinate photo/video coverage.
+
+## 🧪 QA / Optimization 
+- Test desktop and VR.
+- Test with large player counts.
+- Limit candles, NPCs, particles, and collectibles if needed.
+- Test platforms, synchronization, persistence, and rejoining.
+- Verify milestone points cannot be easily farmed.
+- Prepare simpler fallbacks for unfinished features.

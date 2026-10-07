@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="evento-muertos">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forjadores Hispanos VR</title>
-    <meta name="description" content="Learn, connect and discover Spanish-speaking talent in VRChat. Explore our community, workshops, events and creative projects." />
+    <title>Día de Muertos 2026 · Forjadores Hispanos VR</title>
+    <meta name="description" content="Celebrate Día de Muertos in VRChat, November 1–8, 2026. Discover the planned activities and apply with your community to take part." />
     <link rel="canonical" href="https://forjadoreshispanosvr.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Forjadores Hispanos VR" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Forjadores Hispanos VR" />
-    <meta property="og:description" content="Learn, connect and discover Spanish-speaking talent in VRChat. Explore our community, workshops, events and creative projects." />
+    <meta property="og:title" content="Día de Muertos 2026 · November 1–8" />
+    <meta property="og:description" content="Tradition, remembrance and community in VRChat. Explore the planned activities or propose one with your community." />
     <meta property="og:url" content="https://forjadoreshispanosvr.com/" />
-    <meta property="og:image" content="https://forjadoreshispanosvr.com/img/social-preview.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Forjadores Hispanos VR community gathering in VRChat" />
+    <meta property="og:image" content="https://forjadoreshispanosvr.com/img/DiaDeMuertos/Logo_Dia_de_muertos_extendido.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:image:alt" content="Día de Muertos event artwork and participating communities" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:alt" content="Forjadores Hispanos VR community gathering in VRChat" />
+    <meta name="twitter:image:alt" content="Día de Muertos event artwork and participating communities" />
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -30,10 +30,11 @@
     <link
       rel="preload"
       as="image"
-      href="img/hero-foto2.jpg"
+      href="img/DiaDeMuertos/Logo_Dia_de_muertos_web.webp"
       fetchpriority="high"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dia-de-muertos.css" />
   </head>
 
   <!-- LIGHTBOX -->
@@ -52,78 +53,87 @@
     <!-- NAVBAR -->
     <div id="navbar-container"></div>
 
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-foto">
-        <div class="hero-slide activo">
-          <img
-            src="img/hero-foto2.jpg"
-            alt="Forjadores event"
-            width="1920"
-            height="1080"
-            fetchpriority="high"
-            decoding="async"
-          />
+    <!-- TEMPORARY EVENT: originals and restoration steps in respaldos/dia-de-muertos-2026/ -->
+    <section class="dm-hero" id="invitacion" aria-labelledby="dm-title">
+      <div class="dm-papel" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="container dm-hero-grid">
+        <div class="dm-invitation">
+          <p class="dm-eyebrow">YOU'RE INVITED · VRCHAT</p>
+          <h1 id="dm-title">Día de<br /><span>Muertos</span></h1>
+          <p class="dm-date"><time datetime="2026-11-01">November 1</time>–<time datetime="2026-11-08">8, 2026</time></p>
+          <p class="dm-lead">We remember. We celebrate.<br />We come together.</p>
+          <p class="dm-intro">Join us for eight days of Mexican tradition, art and community. A gathering to honor memories and create new ones, together in VRChat.</p>
+          <div class="dm-actions">
+            <a class="dm-button" href="#actividades">Explore the activities <span aria-hidden="true">↓</span></a>
+            <a class="dm-button dm-button-outline" href="https://docs.google.com/forms/d/e/1FAIpQLSdmnyfFGQCyuECsi6ZEj_nQGdRhXdcqO3De7yY6Zb5tSDy2Bg/viewform" target="_blank" rel="noopener noreferrer">Apply with your community <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="dm-note">The full schedule and times will be announced soon.</p>
         </div>
-        <div class="hero-slide">
-          <img
-            src="img/hero-foto3.jpg"
-            alt="Taller Forjadores"
-            width="1920"
-            height="1080"
-            loading="lazy"
-            decoding="async"
-          />
+        <div class="dm-art">
+          <img src="img/DiaDeMuertos/Logo_Dia_de_muertos_web.webp" alt="Día de Muertos 2026: a colorful cat with flowers and decorative skull face paint" width="1600" height="1012" fetchpriority="high" decoding="async" />
+          <p>Tradition that brings us together, beyond the screen.</p>
         </div>
-        <div class="hero-slide">
-          <img
-            src="img/Forjaversario2026.png"
-            alt="Taller Forjadores"
-            width="1920"
-            height="1080"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+      </div>
+      <div class="dm-ribbon"><span>REMEMBRANCE</span><span aria-hidden="true">✦</span><span>TRADITION</span><span aria-hidden="true">✦</span><span>COMMUNITY</span></div>
+    </section>
 
-        <div class="hero-overlay"></div>
-        <div class="container hero-contenido">
-          <div class="row align-items-end">
-            <div class="col-lg-7">
-              <p class="hero-badge" data-i18n="hero-badge">
-                COMMUNITY · VRCHAT · SPANISH-SPEAKING
-              </p>
-              <h1 class="hero-titulo" data-i18n="hero-titulo">
-                Forjadores<br />
-                <span class="hero-titulo-celeste">Hispanos</span>
-              </h1>
-              <p class="hero-tagline" data-i18n="hero-tagline">
-                Learn, connect and discover Spanish-speaking talent within
-                VRChat.
-              </p>
-            </div>
-            <div class="col-lg-5 d-flex flex-column align-items-end gap-2">
-              <a
-                href="nosotros.html"
-                class="btn btn-hero-blanco"
-                data-i18n="hero-btn1"
-                >Meet the community</a
-              >
-              <a
-                href="redes.html"
-                class="btn btn-hero-ghost"
-                data-i18n="hero-btn2"
-                >Our Networks</a
-              >
-            </div>
+    <section class="dm-section" id="actividades" aria-labelledby="dm-activities-title">
+      <div class="container">
+        <p class="seccion-label">EIGHT DAYS TO COME TOGETHER</p>
+        <h2 class="dm-heading" id="dm-activities-title">A celebration full of life</h2>
+        <p class="dm-section-intro">Here's what we're preparing for Día de Muertos. Activities are in development; the final program and times are still to be confirmed.</p>
+        <div class="dm-activity-grid">
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">01 /</span>
+            <h3>Opening &amp; closing ceremonies</h3>
+            <p>A candle-lit welcome, a community photo and a closing celebration with a cempasúchil bridge, music and light.</p>
+          </article>
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">02 /</span>
+            <h3>Music, dance &amp; procession</h3>
+            <p>Gatherings with dancers and musicians, and a procession to share the spirit of the celebration with other communities.</p>
+          </article>
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">03 /</span>
+            <h3>Stories &amp; cultural tours</h3>
+            <p>Guided tours, storytelling and spaces to discover the history of Día de Muertos and the meaning of the ofrenda.</p>
+          </article>
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">04 /</span>
+            <h3>An ofrenda we build together</h3>
+            <p>Candles, remembrance messages and interactive objects: a shared tribute to those we carry in our hearts.</p>
+          </article>
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">05 /</span>
+            <h3>Explore, play &amp; discover</h3>
+            <p>Collectibles, cultural quizzes, ofrenda puzzles and alebrijes to discover as you explore the world.</p>
+          </article>
+          <article class="dm-card">
+            <span class="dm-card-number" aria-hidden="true">06 /</span>
+            <h3>Flame of the Souls</h3>
+            <p>A milestone experience connecting activities to the ofrenda's progression, alongside art and gallery spaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dm-community" aria-labelledby="dm-community-title">
+      <div class="container">
+        <div class="dm-callout">
+          <div>
+            <p class="dm-eyebrow">OPEN CALL FOR COMMUNITIES</p>
+            <h2 class="dm-heading" id="dm-community-title">Your community has<br />a place at the ofrenda.</h2>
+            <p>Are you a dance group, musician, storyteller, guide or creative community? Propose an activity or apply to participate in the event.</p>
+            <a class="dm-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdmnyfFGQCyuECsi6ZEj_nQGdRhXdcqO3De7yY6Zb5tSDy2Bg/viewform" target="_blank" rel="noopener noreferrer">Propose an activity / participate <span aria-hidden="true">↗</span></a>
+            <p class="dm-note">The application opens in Google Forms in a new tab.</p>
+          </div>
+          <div class="dm-callout-detail">
+            <span aria-hidden="true">✦</span>
+            <p>Many communities.<br />One celebration.</p>
+            <a href="redes.html">Follow our networks for updates →</a>
           </div>
         </div>
-
-        <div class="hero-dots">
-          <span class="hero-dot activo"></span>
-          <span class="hero-dot"></span>
-          <span class="hero-dot"></span>
-        </div>
+        <img class="dm-partners" src="img/DiaDeMuertos/Logo_Dia_de_muertos_extendido.png" alt="Día de Muertos with Forjadores Hispanos, El Alba, PJKT Community and VRChat" width="1600" height="400" loading="lazy" decoding="async" />
       </div>
     </section>
 
