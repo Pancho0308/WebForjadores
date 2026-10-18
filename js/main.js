@@ -652,6 +652,7 @@ const traducciones = {
     "footer-com": "Comunidad",
     "footer-sig": "Síguenos",
     "footer-donar": "Donativos",
+    "footer-privacidad": "Aviso de privacidad",
     "footer-copy1":
       '© 2026 Forjadores Hispanos VR · Creado por <span class="credit-name credit-noch">Noch</span>',
     "footer-copy2":
@@ -725,6 +726,7 @@ const traducciones = {
     "footer-com": "Community",
     "footer-sig": "Follow us",
     "footer-donar": "Donations",
+    "footer-privacidad": "Privacy notice",
     "footer-copy1":
       '© 2026 Forjadores Hispanos VR · Created by <span class="credit-name credit-noch">Noch</span>',
     "footer-copy2":

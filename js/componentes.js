@@ -73,6 +73,7 @@ function cargarFooter() {
               <img src="${baseRuta}img/logo.png" alt="Logo Forjadores" width="40" height="40" class="logo-img mb-3">
               <h4 class="footer-nombre">Forjadores Hispanos VR</h4>
               <p class="footer-desc" data-i18n="footer-desc">Comunidad hispanohablante en VRChat dedicada al aprendizaje, el arte digital y la colaboración.</p>
+              <a href="aviso-de-privacidad.html" class="btn btn-outline-light" data-i18n="footer-privacidad">Aviso de privacidad</a>
             </div>
           </div>
           <div class="col-6 col-lg-2 offset-lg-1">

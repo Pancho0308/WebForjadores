@@ -5178,3 +5178,27 @@ body::after {
     flex: 1;
   }
 }
+
+/* ── AVISO DE PRIVACIDAD ── */
+.aviso-privacidad {
+  max-width: 80ch;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.aviso-privacidad h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.aviso-privacidad h2 {
+  margin-top: 2rem;
+  font-size: 1.35rem;
+}
+
+.aviso-privacidad a {
+  color: var(--texto);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
