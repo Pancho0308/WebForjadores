@@ -3,6 +3,12 @@ Options -MultiViews
 
 RewriteEngine On
 
+# Quita la barra final solo en páginas .html, sin afectar directorios como /es/.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} ^(.+)/$
+RewriteCond %1.html -f
+RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
+
 # Redirige las URLs solicitadas con .html a su versión limpia.
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html(?:[?\s]) [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]

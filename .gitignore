@@ -1,7 +1,9 @@
 # Local tooling
 .pi/
 
-tests/
+tests/*
+!tests/asset-urls.test.js
+!tests/privacy-notice.test.js
 # OS/editor files
 .DS_Store
 Thumbs.db
