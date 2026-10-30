@@ -4,6 +4,7 @@
 tests/*
 !tests/asset-urls.test.js
 !tests/privacy-notice.test.js
+!tests/dia-de-muertos.test.js
 # OS/editor files
 .DS_Store
 Thumbs.db
