@@ -3,9 +3,8 @@ const { existsSync, readFileSync } = require("node:fs");
 const { resolve } = require("node:path");
 const test = require("node:test");
 
-const form = "https://docs.google.com/forms/d/e/1FAIpQLSdmnyfFGQCyuECsi6ZEj_nQGdRhXdcqO3De7yY6Zb5tSDy2Bg/viewform";
 
-test("Both event homepages keep the dates, applications, local assets and original content", () => {
+test("Both event homepages keep the dates, closed registration notice, local assets and original content", () => {
   for (const [path, backup] of [
     ["index.html", "index.html.original"],
     ["es/index.html", "es-index.html.original"],
@@ -17,7 +16,8 @@ test("Both event homepages keep the dates, applications, local assets and origin
     assert.match(html, /datetime="2026-11-08"/);
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
     assert.equal((html.match(/class="dm-card"/g) || []).length, 8);
-    assert.equal(html.split(form).length - 1, 2);
+    assert.doesNotMatch(html, /docs\.google\.com\/forms|<form\b|OPEN CALL FOR COMMUNITIES|CONVOCATORIA PARA COMUNIDADES/);
+    assert.match(html, /REGISTRATION CLOSED|INSCRIPCIONES CERRADAS/);
     assert.ok(html.indexOf('id="invitacion"') < html.indexOf('id="galeria"'));
     assert.match(html, /dates and times not listed are to be confirmed|fechas y horas no indicadas están por confirmar/);
     assert.match(html, /css\/dia-de-muertos\.css/);
